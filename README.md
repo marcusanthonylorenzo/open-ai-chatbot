@@ -6,7 +6,7 @@
 | **_Overview_:** |
 |---|
 
-**Summary goes here**
+**The theme is a simple yet familiar "chat bubble" text-conversation theme. In the UI Logic, I did my best to abstract variables and tie them dynamically to each new "chat bubble".**
 
 #### Technologies Used:
 ![image](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
@@ -21,9 +21,10 @@
 
 ##### **My primary objectives** were:
 - To practice the best coding conventions to my knowledge...having only learnt for the last 6 months.
-- To keep variables tightly scoped, writing the cleanest code I can.
+- Practice TDD on business logic.
 - To store JSON response objects into a variable, to save API call limits.
 - To account for the possibility of this project scaling to a high-volume (many people start to code without considering the trail of data that get tangled up over time).
+- To keep variables tightly scoped, writing the cleanest code I can.
 
 ---
 

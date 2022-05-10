@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  height: 100vh;
+  margin: auto;
+  align-items: center;
+}
+
+.inner-header {
+  width: 100vw;
+  height: 20vh;
+}

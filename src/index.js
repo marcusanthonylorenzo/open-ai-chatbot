@@ -12,15 +12,15 @@ function dataWrapper() {
     frequency_penalty: 0.0,
     presence_penalty: 0.0,
   };
-  let responseObjects = [];
+  let responseArray = [];
 
   //Form submit on click event.
-  const submitEvent = (userInput) => {
-    postInputToOpenAI(userInput)
+  const submitEvent = async (userInput) => {
+    await postInputToOpenAI(userInput)
       .then(returnedData => {
         const returnedDataText = returnedData.choices[0].text;
-        responseObjects.unshift(returnedDataText);
-        console.log(responseObjects);
+        responseArray.push(returnedDataText);
+        console.log(responseArray);
         prependToPage(returnedDataText);
       });
   };
@@ -32,13 +32,47 @@ function dataWrapper() {
   });
 
 
-  //UI
+  /* UI */
+  let postID = 0;
   const prependToPage = (textToPrepend) => {
-    const output = document.querySelector(".container");
+    //General selectors
+    const output = document.querySelector(".output");
+    const chatBubbleDiv = document.createElement("div");
+    let newPostID = postID ++;
+    let postIndex = responseArray.length - 1;
+
+    //create new div for each new post, attach ID to length.
+    chatBubbleDiv.classList.add(`chatBubble`);
+    chatBubbleDiv.setAttribute(`id`, `post${newPostID}`);
+    output.appendChild(chatBubbleDiv);
+
+    // for each new post, add a delete button
+    const deleteButton = document.createElement("button");
+    const thisDiv = document.getElementById(`post${newPostID}`);
+    thisDiv.appendChild(deleteButton);
+    deleteButton.addEventListener("click", () => {
+      thisDiv.remove();
+      responseArray.splice(postIndex, 1);
+      console.log(responseArray, postIndex);
+    });
+
+    //DOM selectors for User
+
+    //DOM selectors for Reponse
     const p = document.createElement("p");
-    output.prepend(p);
+    const length = document.createElement("p");
     p.textContent = textToPrepend;
+    length.textContent =  `Message ID: ${newPostID}`;
+    chatBubbleDiv.prepend(p);
+    p.appendChild(length);
   };
+
+  // const clearAll = () =>{
+  //   //write (Message Unsent) like IG.
+  //   while (responseArray.hasChildNodes()){
+  //     responseArray.removeChild(responseArray.firstChild);
+  //   }
+  // };
 
 }
 dataWrapper();
