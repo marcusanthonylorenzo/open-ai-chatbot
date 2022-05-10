@@ -44,13 +44,13 @@ function dataWrapper() {
     let postIndex = responseArray.length - 1;
     const timestamp = new Date().toLocaleTimeString();
 
-    //create new div for each new post, attach ID to length.
+    //Create new div for each new post, attach ID.
     chatBubbleDiv.classList.add(`chatBubble`);
     chatBubbleDiv.setAttribute(`id`, `post${newPostID}`);
-    chatBubbleDiv.style.justifyContent = side;
+    chatBubbleDiv.style.justifyContent = "left";
     output.appendChild(chatBubbleDiv);
 
-    // for each new post, add a delete button
+    //For each new post, add a delete button
     const deleteButton = document.createElement("button");
     deleteButton.classList.add(`deleteBtns`);
     const thisDiv = document.getElementById(`post${newPostID}`);
@@ -61,22 +61,21 @@ function dataWrapper() {
       console.log(responseArray, postIndex);
     });
 
-    //DOM selectors for Reponse
-    const p = document.createElement("p");
-    const length = document.createElement("p");
-    p.textContent = textToPrepend;
-    length.textContent =  `Message ID: ${newPostID}    Sent at ${timestamp}`;
-    chatBubbleDiv.prepend(p);
-    p.appendChild(length);
-
+    //Chat content.
+    const chatBuilder = (name) => {
+      chatBubbleDiv.prepend(chatline);
+      chatline.innerHTML = `
+        <span id="${side}">(${timestamp}) <strong>${name}</strong></span>: ${textToPrepend}
+      `;
+    };
+    let chatline = document.createElement("p");
+    let smarterChild = "Not-So-SmarterChild";
+    let screenName = "You";
+    if (side === "right") {
+      chatBuilder(smarterChild);
+    } else if (side === "left") {
+      chatBuilder(screenName);
+    }
   };
-
-  // const clearAll = () =>{
-  //   //write (Message Unsent) like IG.
-  //   while (responseArray.hasChildNodes()){
-  //     responseArray.removeChild(responseArray.firstChild);
-  //   }
-  // };
-
 }
 dataWrapper();

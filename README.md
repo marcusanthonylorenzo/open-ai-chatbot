@@ -6,7 +6,7 @@
 | **_Overview_:** |
 |---|
 
-**The theme is a simple yet familiar "chat bubble" text-conversation theme. In the UI Logic, I did my best to abstract variables and tie them dynamically to each new "chat bubble".**
+**The theme has shifted from originally a text conversation to AOL Instant Messenger's "Smarter Child", but my version. In the UI Logic, I did my best to abstract variables and tie them dynamically to each new "chat bubble".**
 
 #### Technologies Used:
 ![image](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)

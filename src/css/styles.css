@@ -11,7 +11,7 @@
   padding: 3rem;
   align-items: right;
   justify-content: flex-end;
-  background-color: rgba(241, 207, 207, 0.8);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .display, .output{
@@ -19,7 +19,7 @@
 }
 
 .chatBubble {
-  background-color: rgba(101, 98, 233, 0.7);
+  background-color: rgba(255, 255, 255, 0.7);
   display: inline-flex;
   justify-content: right;
   width: 80%;
@@ -57,4 +57,14 @@
 .deleteBtns {
   height: 1rem;
   align-items: center;
+}
+
+#left {
+  font-weight: 700;
+  color: rgb(197, 33, 33);
+}
+
+#right {
+  font-weight: 700;
+  color: rgb(33, 62, 194);
 }
