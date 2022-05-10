@@ -2,11 +2,9 @@ import "./css/styles.css";
 import {postInputToOpenAI} from "./../src/js/apiData.js";
 
 function dataWrapper() {
-  
   //user input storage for POST requests.
-  // let userName = document.getElementById("userName").value;
   let userInput = {
-    prompt: "Write a poem about a dog wearing skis", //document.getElementById("textInput").value;
+    prompt: "",
     temperature: 0.5,
     max_tokens: 20,
     top_p: 1.0,
@@ -29,32 +27,32 @@ function dataWrapper() {
   const submitButton = document.getElementById("submitBtn");
   submitButton.addEventListener("click", (event) =>{
     event.preventDefault();
-    prependToPage(userInput.prompt, "left");
     //Add "...AI is typing text?"
-    setTimeout(submitEvent(userInput), 900);
+    userInput.prompt = document.getElementById("formInput").value;
+    prependToPage(userInput.prompt, "left");
+    submitEvent(userInput);
   });
 
 
   /* MAIN UI */
-  let postID = 0;
+  let postID = 1;
   const prependToPage = (textToPrepend, side) => {
     //General selectors
     const output = document.querySelector(".output");
     const chatBubbleDiv = document.createElement("div");
     let newPostID = postID ++;
     let postIndex = responseArray.length - 1;
-    
-    //Time
     const timestamp = new Date().toLocaleTimeString();
 
     //create new div for each new post, attach ID to length.
-    chatBubbleDiv.classList.add(`chatBubble-${side}`);
+    chatBubbleDiv.classList.add(`chatBubble`);
     chatBubbleDiv.setAttribute(`id`, `post${newPostID}`);
     chatBubbleDiv.style.justifyContent = side;
     output.appendChild(chatBubbleDiv);
 
     // for each new post, add a delete button
     const deleteButton = document.createElement("button");
+    deleteButton.classList.add(`deleteBtns`);
     const thisDiv = document.getElementById(`post${newPostID}`);
     thisDiv.appendChild(deleteButton);
     deleteButton.addEventListener("click", () => {
@@ -62,8 +60,6 @@ function dataWrapper() {
       responseArray.splice(postIndex, 1);
       console.log(responseArray, postIndex);
     });
-
-    //DOM selectors for User
 
     //DOM selectors for Reponse
     const p = document.createElement("p");

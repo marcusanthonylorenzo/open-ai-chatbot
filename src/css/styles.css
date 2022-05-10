@@ -18,16 +18,18 @@
   width: 100%;
 }
 
-.chatBubble-right {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
+.chatBubble {
+  background-color: rgba(101, 98, 233, 0.7);
+  display: inline-flex;
+  justify-content: right;
+  width: 80%;
 }
 
 .chatbox {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  align-items: center;
   width: 50vw;
   height: 10rem;
 }
@@ -50,4 +52,9 @@
 #submitBtn {
   height: 60%;
   width: 10%;
+}
+
+.deleteBtns {
+  height: 1rem;
+  align-items: center;
 }
