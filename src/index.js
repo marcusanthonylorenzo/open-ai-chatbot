@@ -24,16 +24,14 @@ function scopingFunc() {
         console.log(chatlogHistory);
         prependToPage(returnedDataText, "blue");
         let listItems = document.querySelectorAll('.chatlogItems');
-        console.log(listItems);
+        
         listItems.forEach((item) => {
           item.addEventListener('click', (event) => {
-            alert(`${event.currentTarget.innerHTML} item was click`);
+            let nodeIndexConversion = event.currentTarget.id - 1;
+            let target = chatlogHistory[nodeIndexConversion];
+            alert(`${event.currentTarget.innerHTML} item was clicked. Response: ${target[userInput.prompt]}`);
           });
-          // if (item.innerHTML.indexOf('Last 30 days') != -1) {
-          //   item.click();
-          // }
         });
-      
       });
   };
 
@@ -70,15 +68,15 @@ function scopingFunc() {
     chatBubbleDiv.style.justifyContent = "left";
     output.appendChild(chatBubbleDiv);
 
-    //For each new post, add a delete button
-    const deleteButton = document.createElement("button");
-    deleteButton.classList.add(`deleteBtns`);
-    const thisDiv = document.getElementById(`post${newPostID}`);
-    thisDiv.appendChild(deleteButton);
-    deleteButton.addEventListener("click", () => {
-      thisDiv.remove();
-      chatlogHistory.splice(buddyCount, 1);
-    });
+    //For each new post, add a delete button, for later.
+    // const deleteButton = document.createElement("button");
+    // deleteButton.classList.add(`deleteBtns`);
+    // const thisDiv = document.getElementById(`post${newPostID}`);
+    // thisDiv.appendChild(deleteButton);
+    // deleteButton.addEventListener("click", () => {
+    //   thisDiv.remove();
+    //   chatlogHistory.splice(buddyCount, 1);
+    // });
 
     //Chat content.
     const chatBuilder = (name) => {
@@ -97,7 +95,6 @@ function scopingFunc() {
       chatBuilder(screenName);
     }
   };
-
 
   //Sidebar components
   const sidebarFill = (newPrompt) => {
