@@ -1,7 +1,7 @@
 import "./css/styles.css";
 import {postInputToOpenAI} from "./../src/js/apiData.js";
 
-function dataWrapper() {
+function scopingFunc() {
   //user input storage for POST requests.
   let userInput = {
     prompt: "",
@@ -11,15 +11,17 @@ function dataWrapper() {
     frequency_penalty: 0.0,
     presence_penalty: 0.0,
   };
-  let responseArray = [];
+  //length -1 is the most recent prompt/response
+  let chatlogHistory = [];
 
   //Form submit on click event.
   const submitEvent = async (userInput) => {
     await postInputToOpenAI(userInput)
       .then(returnedData => {
         const returnedDataText = returnedData.choices[0].text;
-        responseArray.push(returnedDataText);
-        console.log(responseArray);
+        let chatlogObj = createObj(userInput.prompt, returnedDataText);
+        chatlogHistory.push(chatlogObj);
+        console.log(chatlogHistory);
         prependToPage(returnedDataText, "right");
       });
   };
@@ -31,20 +33,27 @@ function dataWrapper() {
     userInput.prompt = document.getElementById("formInput").value;
     prependToPage(userInput.prompt, "left");
     submitEvent(userInput);
+    if (chatlogHistory.length > 0){
+      sidebarFill(userInput.prompt);
+    }
   });
 
 
   /* MAIN UI */
   let postID = 1;
   const prependToPage = (textToPrepend, side) => {
-    //General selectors
+    //General
     const output = document.querySelector(".output");
-    const chatBubbleDiv = document.createElement("div");
     let newPostID = postID ++;
-    let postIndex = responseArray.length - 1;
+    let postIndex = chatlogHistory.length - 1;
     const timestamp = new Date().toLocaleTimeString();
 
+    //Create instant messenger chat box
+    // const chatbox = document.querySelector(".chatbox");
+
+
     //Create new div for each new post, attach ID.
+    const chatBubbleDiv = document.createElement("div");
     chatBubbleDiv.classList.add(`chatBubble`);
     chatBubbleDiv.setAttribute(`id`, `post${newPostID}`);
     chatBubbleDiv.style.justifyContent = "left";
@@ -57,8 +66,8 @@ function dataWrapper() {
     thisDiv.appendChild(deleteButton);
     deleteButton.addEventListener("click", () => {
       thisDiv.remove();
-      responseArray.splice(postIndex, 1);
-      console.log(responseArray, postIndex);
+      chatlogHistory.splice(postIndex, 1);
+      console.log(chatlogHistory, postIndex);
     });
 
     //Chat content.
@@ -77,5 +86,23 @@ function dataWrapper() {
       chatBuilder(screenName);
     }
   };
+
+  const sidebarFill = (newPrompt) => {
+    const sidebar = document.querySelector(".side-display");
+    const chatlogUl = document.createElement("ul");
+    chatlogUl.classList.add("chatlogItems");
+    sidebar.prepend(chatlogUl);
+
+    const li = document.createElement("li");
+    li.textContent = newPrompt;
+    chatlogUl.prepend(li);
+  };
+
+  //non UI logic
+  const createObj = (keyProp, val) => {
+    let newObj = Object.create({});
+    newObj[keyProp] = val;
+    return newObj;
+  };
 }
-dataWrapper();
+scopingFunc();

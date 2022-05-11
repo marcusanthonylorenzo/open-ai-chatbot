@@ -4,18 +4,31 @@
   <title></title>
 </head>
 <body>
-  <div class="container">
-    <div class="display">
-      <div class="output"></div>
-    </div>
-    <section class="chatbox">
+  <div class="container"> 
+    <div class="inner-wrap">
+    <div class="top-bar"></div>
+    <div class="chatbox">
+      <div class="display">
+        <div class="output-control">
+          <div class="output"></div>
+        </div> 
+      </div>
       <div class="form-wrapper">
         <form class="form-control">
           <input type="text" id="formInput" placeholder="Type a message...">
-          <button type="submit" id="submitBtn">Send</button>
+          <section class="bottom-bar">
+            <div class="bottom-buttons"></div>
+            <div class="bottom-submit">
+              <button type="submit" id="submitBtn">Send</button>
+            </div>
+          </section>
         </form>
-      </div>
-    </section>
+      </div>   
+    </div>
+    </div>
+    <div class="sidebar">
+      <div class="side-display"></div>
+    </div>
   </div>
 </body>
 </html>

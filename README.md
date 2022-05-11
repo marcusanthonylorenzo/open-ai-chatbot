@@ -2,11 +2,13 @@
 #### By _**Marcus Lorenzo**_
 ---
 
+![image](https://cdn.shopify.com/s/files/1/0611/1605/5788/t/2/assets/shopify-internships-logo.svg?v=54099945611246839601638917488)
+
 
 | **_Overview_:** |
 |---|
 
-**The theme has shifted from originally a text conversation to AOL Instant Messenger's "Smarter Child", but my version. In the UI Logic, I did my best to abstract variables and tie them dynamically to each new "chat bubble".**
+**The theme has shifted from a "text conversation" to AOL Instant Messenger's "Smarter Child"...but my version. This brings back the nostalgia of talking to an AI chat bot in 1999. In the UI Logic, I did my best to abstract variables and tie them dynamically to each new "chat bubble".**
 
 #### Technologies Used:
 ![image](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
@@ -20,7 +22,7 @@
 |---|
 
 ##### **My primary objectives** were:
-- To practice the best coding conventions to my knowledge...having only learnt for the last 6 months.
+- To practice the best coding conventions **to my knowledge**...having only learnt for the last 6 months.
 - Practice TDD on business logic.
 - To store JSON response objects into a variable, to save API call limits.
 - To account for the possibility of this project scaling to a high-volume (many people start to code without considering the trail of data that get tangled up over time).
@@ -55,7 +57,7 @@
 - To view tests via Jest, in your CLI type `npm run test`.
 
 #### Known Bugs:
-* None at present time.
+* new line errors with API response.text
 
 ---
 
@@ -65,13 +67,16 @@
 - UI: Card-catalogue displaying previous requests.
 - Chatbox style UI.
 - Use another API to generate a prompt, or translate (if time).
+- AIM! + Windows 95?
 
 #### Objects, Properties:
 - `const userInput = {}` used as a data storage, similar to a "Dictionary" but in Javascript.
-- `Response from API call.
+- Response from API call.
+- Prompt/Response assigned to Key/Value in `let chatlogHistory[index]`;
 
 #### Collections/Groupings:
-- `let responseObjects`, Array to save access to previous requests rather than make extra API calls.
+- `let chatlogHistory`, Array to save access to previous requests rather than make extra API calls.
+- 
 
 #### Behaviours/Interactivity
 - Submit/Click event to gather and POST user input text.
