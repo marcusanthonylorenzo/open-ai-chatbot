@@ -2,13 +2,22 @@ body {
   /* if image fails default to color: */
   background-color: rgba(235, 192, 192, 0.5);
   background-image: url("https://wallpapercave.com/wp/wp2754864.jpg");
-  /* background-repeat: no-repeat;
-  background-size: cover; */
 }
 
 h5, h4 {
   margin: 3%;
   font-size: 1em;
+}
+
+.offline {
+  font-size: 1em;
+  text-align: left;
+  color:rgb(170, 167, 167);
+  font-weight: 500;
+}
+
+.onlineOthers {
+  margin-top: 3%;
 }
 
 .container {
@@ -44,7 +53,7 @@ h5, h4 {
   margin: auto;
   margin-top: 1%;
   overflow: auto;
-  text-align: center;
+  text-align: left;
 }
 
 .chatlogItems {
@@ -53,7 +62,8 @@ h5, h4 {
   width: 95%;
   margin: auto;
   padding-left: 2%;
-  text-align: left;
+  text-align: center;
+  font-size: 14px;
 }
 
 .side-output li:hover {
@@ -63,7 +73,9 @@ h5, h4 {
   width: 90%;
   margin: auto;
   padding-left: 2%;
-  text-align: left;
+  text-align: center;
+  font-size: 14px;
+  border-style: dotted;
 }
 
 .inner-wrap {
@@ -101,7 +113,7 @@ h5, h4 {
   background-color: rgba(255, 255, 255, 0.7);
   width: 98%;
   height: 99%;
-  border: 1px solid rgb(54, 54, 54);
+  border: 1px solid rgba(54, 54, 54, .7);
   overflow: auto;
   margin-top: 5%;
   margin-bottom: 6%;
@@ -167,6 +179,13 @@ h5, h4 {
   color: rgb(33, 62, 194);
 }
 
-#popUp {
-  background-color: rgba(162, 110, 110, 0.8);
+.popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 10%;
+  background-color: rgba(209, 190, 190, 0.8);
+  height: 50vh;
+  width: 50vw;
 }

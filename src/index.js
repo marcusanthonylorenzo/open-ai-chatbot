@@ -11,7 +11,6 @@ function scopingFunc() {
     frequency_penalty: 0.0,
     presence_penalty: 0.0,
   };
-  //length -1 is the most recent prompt/response
   let chatlogHistory = [];
 
   //Form submit on click event.
@@ -21,23 +20,30 @@ function scopingFunc() {
         const returnedDataText = returnedData.choices[0].text;
         let chatlogObj = createObj(userInput.prompt, returnedDataText);
         chatlogHistory.push(chatlogObj);
-        console.log(chatlogHistory);
         prependToPage(returnedDataText, "blue");
+
         let listItems = document.querySelectorAll('.chatlogItems');
-        
         listItems.forEach((item) => {
           item.addEventListener('click', (event) => {
             let nodeIndexConversion = event.currentTarget.id - 1;
             let target = chatlogHistory[nodeIndexConversion];
-            alert(`${event.currentTarget.innerHTML} item was clicked. Response: ${target[userInput.prompt]}`);
+            showHistory(event, target, userInput);
+            // alert(`${event.currentTarget.innerHTML} item was clicked. Response: ${target[userInput.prompt]}`);
           });
         });
       });
   };
 
+  //Submit event workflow
   const submitButton = document.getElementById("submitBtn");
   submitButton.addEventListener("click", (event) =>{
     event.preventDefault();
+    const getPopups = document.querySelectorAll('.popup');
+    if (getPopups.length > 0){
+      getPopups.forEach((popup) => {
+        popup.remove();
+      });
+    }
     //Add "...AI is typing text?"
     userInput.prompt = document.getElementById("formInput").value;
     prependToPage(userInput.prompt, "red");
@@ -47,14 +53,31 @@ function scopingFunc() {
     }
   });
 
+  //Prompt History event
+  const showHistory = (event, target, userInput) => {
+    const getDisplay = document.querySelector(".display");
+    let modal = document.createElement("div");
+    modal.classList.add("popup");
+    const listPrompt = document.createElement("li");
+    const listReply = document.createElement("li");
+    listPrompt.innerHTML = `Prompt: ${event.currentTarget.innerHTML}`;
+    listReply.innerHTML = `Response: ${target[userInput.prompt]}`;
+
+    console.log(listPrompt, listReply);
+    getDisplay.appendChild(modal);
+    modal.appendChild(listPrompt);
+    modal.appendChild(listReply);
+  };
+
   /* MAIN UI */
   let timestamp = new Date().toLocaleTimeString();
   let postID = 1;
 
   const prependToPage = (textToPrepend, side) => {
-    //General
+    //General Selectors
     const sideDisplay = document.querySelector(".onlineNum");
     const output = document.querySelector(".output");
+    //Individual counters/IDs for specific use later.
     let newPostID = postID ++;
     let buddyCount = chatlogHistory.length - 1;
     if (chatlogHistory.length > 0) {
@@ -106,7 +129,6 @@ function scopingFunc() {
     chatlogUl.classList.add("chatlogItems");
     sideOutput.append(chatlogUl);
     chatlogUl.setAttribute(`id`, `${chatlogHistory.length}`);
-
     // const li = document.createElement("li");
     chatlogUl.textContent = newPrompt + ` ` + timestamp;
   };
