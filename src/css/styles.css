@@ -166,3 +166,7 @@ h5, h4 {
   font-weight: 700;
   color: rgb(33, 62, 194);
 }
+
+#popUp {
+  background-color: rgba(162, 110, 110, 0.8);
+}

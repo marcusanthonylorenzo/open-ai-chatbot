@@ -23,6 +23,17 @@ function scopingFunc() {
         chatlogHistory.push(chatlogObj);
         console.log(chatlogHistory);
         prependToPage(returnedDataText, "blue");
+        let listItems = document.querySelectorAll('.chatlogItems');
+        console.log(listItems);
+        listItems.forEach((item) => {
+          item.addEventListener('click', (event) => {
+            alert(`${event.currentTarget.innerHTML} item was click`);
+          });
+          // if (item.innerHTML.indexOf('Last 30 days') != -1) {
+          //   item.click();
+          // }
+        });
+      
       });
   };
 
@@ -51,7 +62,6 @@ function scopingFunc() {
     if (chatlogHistory.length > 0) {
       sideDisplay.innerHTML = `🞃 Buddies (${buddyCount}/${buddyCount})`;
     }
-    // let timestamp = new Date().toLocaleTimeString();
 
     //Create new div for each new post, attach ID.
     const chatBubbleDiv = document.createElement("div");
@@ -74,9 +84,10 @@ function scopingFunc() {
     const chatBuilder = (name) => {
       chatBubbleDiv.prepend(chatline);
       chatline.innerHTML = `
-        <span id="${side}">(${timestamp}) <strong>${name}</strong></span>: ${textToPrepend}
+        <span id="${side}"><strong>${name} (${timestamp})</strong>:</span> ${textToPrepend}
       `;
     };
+
     let chatline = document.createElement("p");
     let smarterChild = "Not-So-SmarterChild";
     let screenName = "Xx You xX 1992";
@@ -102,7 +113,6 @@ function scopingFunc() {
     // const li = document.createElement("li");
     chatlogUl.textContent = newPrompt + ` ` + timestamp;
   };
-
 
   //non UI logic
   const createObj = (keyProp, val) => {
