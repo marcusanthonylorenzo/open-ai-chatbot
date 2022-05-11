@@ -58,6 +58,8 @@
 
 #### Known Bugs:
 * new line errors with API response.text
+* resizing scaling outside of intended design
+* scroll delay not matching output if click event in rapid succession
 
 ---
 

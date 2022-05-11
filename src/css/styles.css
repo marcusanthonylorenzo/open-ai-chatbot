@@ -6,17 +6,22 @@ body {
   background-size: cover; */
 }
 
+h5, h4 {
+  margin: 3%;
+  font-size: 1em;
+}
+
 .container {
   display: flex;
   flex-direction: row;
-  width: 40%;
+  width: 60%;
   height: 45vh;
   margin: auto;
   margin-top: 10%;
   padding: 2rem;
   align-items: right;
   justify-content: flex-end;
-  background-color: rgb(231, 231, 231);
+  background-color: rgba(234, 231, 231, 0.931);
   gap: 0.5rem;
   border: 1px solid rgba(65, 65, 65, 0.8);
   border-top-style: none;
@@ -25,26 +30,40 @@ body {
 
 .sidebar {
   background-color: rgb(170, 167, 167);
-  width: 35%;
+  width: 50%;
   height: 100%;
   margin-left: 5%;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Tahoma, sans-serif;
+  font-size: 14px;
 }
 
 .side-display {
   background-color: rgba(255, 255, 255, 1);
-  height: 95%;
-  width: 90%;
+  height: 99%;
+  width: 98%;
   margin: auto;
-  margin-top: 5%;
+  margin-top: 1%;
   overflow: auto;
+  text-align: center;
 }
 
-/* .chatlogItems {
-  height: 5%;
-} */
-.chatlogItems :hover{
+.chatlogItems {
+  list-style-type: none;
+  justify-content: center;
+  width: 95%;
+  margin: auto;
+  padding-left: 2%;
+  text-align: left;
+}
+
+.side-output li:hover {
   background-color: rgba(255, 237, 73, 0.8);
+  list-style-type: none;
+  justify-content: center;
+  width: 90%;
+  margin: auto;
+  padding-left: 2%;
+  text-align: left;
 }
 
 .inner-wrap {
@@ -81,11 +100,11 @@ body {
   justify-content: flex-end;
   background-color: rgba(255, 255, 255, 0.7);
   width: 98%;
-  height: 88%;
+  height: 99%;
   border: 1px solid rgb(54, 54, 54);
   overflow: auto;
   margin-top: 5%;
-  margin-bottom: 5%;
+  margin-bottom: 6%;
 }
 
 .output {
@@ -138,12 +157,12 @@ body {
   align-items: center;
 }
 
-#left {
+#red {
   font-weight: 700;
   color: rgb(197, 33, 33);
 }
 
-#right {
+#blue {
   font-weight: 700;
   color: rgb(33, 62, 194);
 }
