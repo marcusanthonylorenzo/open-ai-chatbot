@@ -1,7 +1,7 @@
 import "./css/styles.css";
 import {postInputToOpenAI} from "./js/ApiData.js";
 import ChatlogItem from "./js/ChatlogItem.js";
-import { sidebarFill, showHistory, removePopup, addPopupDoneBtn } from "./js/SidebarComponent.js";
+import { sidebarFill, showHistory, buddyCountUpdater, removePopup, addPopupDoneBtn } from "./js/SidebarComponent.js";
 
 function scopingFunc() {
 
@@ -14,7 +14,6 @@ function scopingFunc() {
     frequency_penalty: 0.0,
     presence_penalty: 0.0,
   };
-
   let chatlogHistory = [];
   let timestamp = new Date().toLocaleTimeString();
   let promptID = 1;
@@ -47,6 +46,7 @@ function scopingFunc() {
   const submitButton = document.getElementById("submitBtn");
   submitButton.addEventListener("click", (event) =>{
     event.preventDefault();
+    // buttonAnimate();
     removePopup();
     userInput.prompt = document.getElementById("formInput").value;
     prependToPage(userInput.prompt, "red");
@@ -56,6 +56,11 @@ function scopingFunc() {
     document.getElementById("formInput").value = ``;
   });
 
+  // const buttonAnimate = () => {
+  //   const buttons = document.querySelector(".bottomBtns");
+  //   buttons.style.backgroundColor =  "rgba(127, 125, 125, 0.4)";
+  // };
+
   const cpuIsTyping = () => {
     const isTypingStatusDiv = document.getElementById("isTypingStatus");
     isTypingStatusDiv.style.display = "flex";
@@ -64,11 +69,8 @@ function scopingFunc() {
 
   //Main chat display
   const prependToPage = (textToPrepend, side) => {
-    const sideDisplay = document.querySelector(".onlineNum");
-    let buddyCount = chatlogHistory.length;
-    if (chatlogHistory.length > 0) {
-      sideDisplay.innerHTML = `🞃 Buddies (${buddyCount}/${buddyCount})`;
-    }
+    buddyCountUpdater(chatlogHistory);
+
     //Create new div for each new post, attach ID.
     const output = document.querySelector(".output");
     const chatBubbleDiv = document.createElement("div");
@@ -93,5 +95,30 @@ function scopingFunc() {
       chatBuilder(screenName);
     }
   };
+
+  //Clear Display
+  const clearDisplayBtn = document.getElementById("clearDisplay");
+  const displaySelect = document.querySelector(".output");
+  clearDisplayBtn.addEventListener("click", () =>{
+    clearArea(displaySelect);
+  });
+
+  //Clear All
+  const clearAllBtn = document.getElementById("clearAll");
+  const sideoutputSelect = document.querySelector(".side-output");
+  clearAllBtn.addEventListener("click", () =>{
+    clearArea(displaySelect);
+    clearArea(sideoutputSelect);
+    chatlogHistory.splice(0);
+    buddyCountUpdater(chatlogHistory);
+  });
+
+  const clearArea = (element) => {
+    removePopup();
+    while (element.hasChildNodes()){
+      element.removeChild(element.firstChild);
+    }
+  };
+
 }
 scopingFunc();

@@ -14,6 +14,7 @@
 - Done in Vanilla JS, no frameworks.
 - I tried my best to use Async/Await for the request. It is my current focus of improvement.
 - I also believe had I known React, my code would be 30% of the size and much more "portable". It is actually my primary topic of focus right now, along with Ajax.
+- I've left some items in the README crossed out; I want to show my thought processes/changes/ideas so that Shopify can get to know me as a programmer. In a professional setting, I would endeavor to work in a cleaner, more succinct manner.
 
 
 #### Technologies Used:
@@ -29,6 +30,7 @@
 
 ##### **My primary objectives** were:
 - To practice the best coding conventions **to my knowledge**...having only learnt for the last 6 months.
+- Try to write readable, organized code.
 - ~To store JSON response objects into a variable, to save API call limits.~ Calls must be made each time for a more dynamic user experience.
 - To account for the possibility of this project scaling to a high-volume (many people start to code without considering the trail of data that gets tangled up over time).
 - To keep variables as tightly scoped as possible, writing the cleanest code I can.
@@ -63,7 +65,6 @@
 - ~To view tests via Jest, in your CLI type `npm run test`.~ (I do use Jest every so often. However, in this project I will exclude tests.)
 
 #### Known Bugs:
-* new line errors with API response.text (Proposed solution: pending)
 * resizing scaling can be unresponsive to window size. (Proposed solution: set media queries)
 * scroll delay not matching output if click event in rapid succession (Proposed solution: disable button until response has been parsed)
 
@@ -78,9 +79,10 @@
 [x] AIM! + Windows 95?
 
 #### Objects, Properties:
-- `const userInput = {}` used as a data storage, similar to a "Dictionary" but in Javascript.
+- `const userInput = {}` used as a data storage, similar to a "Dictionary" but in Javascript. Can change keys to reflect changes in parameters in http request.
 - Response from API call.
 - Instantiate from `class ChatlogItem` with Prompt/Response stored as keys.
+- Each `new ChatlogItem` has a unique id despite `clearAll()`.
 
 #### Collections/Groupings:
 - `let chatlogHistory`, Array accessed by the "Sidebar" component.

@@ -24,6 +24,12 @@ const showHistory = (event, responses) => {
   modal.appendChild(listReply);
 };
 
+const buddyCountUpdater = (chatlogHistory) => {
+  const sideDisplay = document.querySelector(".onlineNum");
+  let buddyCount = chatlogHistory.length;
+  sideDisplay.innerHTML = `🞃 Buddies (${buddyCount}/${buddyCount})`;
+};
+
 //Remove popup
 const removePopup = () => {
   const getPopups = document.querySelectorAll('.popup');
@@ -48,4 +54,4 @@ const addPopupDoneBtn = (getModalList, chatlogHistory) => {
   });
 };
 
-export { sidebarFill, showHistory, removePopup, addPopupDoneBtn };
+export { sidebarFill, showHistory, buddyCountUpdater, removePopup, addPopupDoneBtn };
