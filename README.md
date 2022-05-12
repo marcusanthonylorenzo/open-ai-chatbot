@@ -8,7 +8,7 @@
 | **_Overview_:** |
 |---|
 
-**The theme has shifted from a "text conversation" to AOL Instant Messenger's "Smarter Child"...but my version. This brings back the nostalgia of talking to an AI chat bot in 1999/2001. (Even though the background is Windows XP :rofl: :rofl: )**
+#### The theme has shifted from a "text msg conversation" to a "conversation with AOL Instant Messenger's 'Smarter Child'"...but my low budget version. This brings back the nostalgia of talking to an AI chat bot in 1999/2001. (Even though the background is Windows XP :rofl: :rofl: )
 
 **Notes:**
 - Done in Vanilla JS, no frameworks.
@@ -29,10 +29,9 @@
 
 ##### **My primary objectives** were:
 - To practice the best coding conventions **to my knowledge**...having only learnt for the last 6 months.
-- Practice TDD on business logic.
 - ~To store JSON response objects into a variable, to save API call limits.~ Calls must be made each time for a more dynamic user experience.
 - To account for the possibility of this project scaling to a high-volume (many people start to code without considering the trail of data that gets tangled up over time).
-- To keep variables tightly scoped, writing the cleanest code I can.
+- To keep variables as tightly scoped as possible, writing the cleanest code I can.
 
 ---
 
@@ -73,22 +72,37 @@
 | **_Design Plan_ (Specs):** |
 |---|
 #### Initial Ideas:
-- UI: Card-catalogue displaying previous requests.
-- Chatbox style UI.
+[x] UI: Card-catalogue displaying previous requests.
+[x] Chatbox style UI.
 - Use another API to generate a prompt, or translate (if time).
-- AIM! + Windows 95?
+[x] AIM! + Windows 95?
 
 #### Objects, Properties:
 - `const userInput = {}` used as a data storage, similar to a "Dictionary" but in Javascript.
 - Response from API call.
-- Prompt/Response assigned to Key/Value in `let chatlogHistory[index]`;
+- Instantiate from `class ChatlogItem` with Prompt/Response stored as keys.
 
 #### Collections/Groupings:
 - `let chatlogHistory`, Array accessed by the "Sidebar" component.
 
 #### Behaviours/Interactivity
-- Submit/Click event to gather and POST user input text.
-- `responseObjects.unshift(returnedDataText);` to index all activity from 0 onward, with the lowest index being the most recent activity.
+- `index.js`
+  - Submit/Click event to gather and POST user input text.
+  - `submitEvent()` waits for OpenAI to fetch, before updating the UI
+  - `submitButton` click handler synchronises general UI workflow
+  - `prependToPage()` with `chatBuilder()` updates UI as a throwback to AIM (AOL Instant Messenger)
+
+- `ApiData.js`
+  - `postInputToOpenAI` deals with requests
+
+- `ChatlogItem.js`
+  - `class ChatlogItem` allows objects to be instantiated and subsequently pushed into `let chatlogHistory`(`index.js, line 18`)
+
+- `SidebarComponent.js`
+  - `sidebarFill()` handles the creation and updates for the "Prompt History > Buddies" list
+  - `showHistory()` creates a modal with prompt/response history including time of API request
+  - `removePopup()` clears the UI of all potential modals "popups" populating the viewport
+  - `addPopupDoneBtn()` adds a "done" button for each element in the sidebar list, using `removePopup*()`
 
 ---
 | **_License_:** |

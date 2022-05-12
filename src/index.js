@@ -1,5 +1,7 @@
 import "./css/styles.css";
-import {postInputToOpenAI} from "./../src/js/apiData.js";
+import {postInputToOpenAI} from "./js/ApiData.js";
+import ChatlogItem from "./js/ChatlogItem.js";
+import { sidebarFill, showHistory, removePopup, addPopupDoneBtn } from "./js/SidebarComponent.js";
 
 function scopingFunc() {
 
@@ -15,7 +17,6 @@ function scopingFunc() {
 
   let chatlogHistory = [];
   let timestamp = new Date().toLocaleTimeString();
-  let postID = 0;
   let promptID = 1;
   
   //Form submit on click event.
@@ -23,7 +24,7 @@ function scopingFunc() {
     await postInputToOpenAI(userInput)
       .then(returnedData => {
         const returnedDataText = returnedData.choices[0].text;
-        let chatlogObj = createObj(promptID, returnedDataText);
+        let chatlogObj = new ChatlogItem(promptID, userInput.prompt, returnedDataText);
         chatlogHistory.push(chatlogObj);
         document.getElementById("isTypingStatus").style.display = "none";
         prependToPage(returnedDataText, "blue");
@@ -32,14 +33,10 @@ function scopingFunc() {
         let listItems = document.querySelectorAll('.chatlogItems');
         listItems.forEach((item) => {
           item.addEventListener('click', (event) => {
-            
-            //tie nodeListId to promptID/object key.
-            let nodeID = event.currentTarget.id;
-            nodeID++;
-            let targetResponse = chatlogHistory[event.currentTarget.id][nodeID];
+            let targetResponse = chatlogHistory[event.currentTarget.id].response;
             showHistory(event, targetResponse);
             const getModal = document.querySelectorAll(".popup");
-            addPopupDoneBtn(getModal);
+            addPopupDoneBtn(getModal, chatlogHistory);
           });
         });
       });
@@ -55,9 +52,8 @@ function scopingFunc() {
     prependToPage(userInput.prompt, "red");
     cpuIsTyping();
     submitEvent(userInput);
-    sidebarFill(userInput.prompt); 
-    const clearTextboxForm = document.getElementById("formInput");
-    clearTextboxForm.value = ``;
+    sidebarFill(userInput.prompt, chatlogHistory, timestamp); 
+    document.getElementById("formInput").value = ``;
   });
 
   const cpuIsTyping = () => {
@@ -66,73 +62,18 @@ function scopingFunc() {
     isTypingStatusDiv.textContent = "Open AI is typing...";
   };
 
-  //Sidebar components
-  const sidebarFill = (newPrompt) => {
-    if (newPrompt.length <= 0) {
-      newPrompt = "(Empty prompt)";
-    }
-    const sideOutput = document.querySelector(".side-output");
-    const chatlogUl = document.createElement("li");
-    chatlogUl.classList.add("chatlogItems");
-    sideOutput.append(chatlogUl);
-    chatlogUl.setAttribute(`id`, `${chatlogHistory.length}`);
-    chatlogUl.textContent = newPrompt + ` ` + timestamp;
-  };
-
-  //Prompt History click handler
-  const showHistory = (event, responses) => {
-    const getView = document.querySelector(".container");
-    let modal = document.createElement("div");
-    modal.classList.add("popup");
-    const listPrompt = document.createElement("li");
-    const listReply = document.createElement("li");
-    listPrompt.innerHTML = `<h4>Prompt: ${event.currentTarget.innerHTML}</h4>`;
-    listReply.innerHTML = `<h4>Response: ${responses}</h4>`;
-    getView.appendChild(modal);
-    modal.appendChild(listPrompt);
-    modal.appendChild(listReply);
-  };
-
-  //Remove popup
-  const removePopup = () => {
-    const getPopups = document.querySelectorAll('.popup');
-    if (getPopups.length > 0){
-      getPopups.forEach((popup) => {
-        popup.remove();
-      });
-    }
-  };
-
-  //Exit popup
-  const addPopupDoneBtn = (getModalList) => {
-    getModalList.forEach((item) => {
-      const doneBtn = document.createElement("button");
-      doneBtn.setAttribute(`id`, `doneBtn`);
-      item.append(doneBtn);
-      doneBtn.innerText = `Close`;
-      doneBtn.addEventListener(`click`, ()=> {
-        console.log("clicky boi");
-        removePopup();
-      });
-    });
-  };
-
   //Main chat display
   const prependToPage = (textToPrepend, side) => {
-    //General Selectors
     const sideDisplay = document.querySelector(".onlineNum");
-    const output = document.querySelector(".output");
-    //Individual counters/IDs
-    let newPostID = postID ++;
-    let buddyCount = chatlogHistory.length - 1;
+    let buddyCount = chatlogHistory.length;
     if (chatlogHistory.length > 0) {
       sideDisplay.innerHTML = `🞃 Buddies (${buddyCount}/${buddyCount})`;
     }
-
     //Create new div for each new post, attach ID.
+    const output = document.querySelector(".output");
     const chatBubbleDiv = document.createElement("div");
     chatBubbleDiv.classList.add(`chatBubble`);
-    chatBubbleDiv.setAttribute(`id`, `post${newPostID}`);
+    chatBubbleDiv.setAttribute(`id`, `post${promptID}`);
     chatBubbleDiv.style.justifyContent = "left";
     output.appendChild(chatBubbleDiv);
 
@@ -151,13 +92,6 @@ function scopingFunc() {
     } else if (side === "red") {
       chatBuilder(screenName);
     }
-  };
-
-  //non UI logic
-  const createObj = (keyProp, val) => {
-    let newObj = Object.create({});
-    newObj[keyProp] = val;
-    return newObj;
   };
 }
 scopingFunc();
