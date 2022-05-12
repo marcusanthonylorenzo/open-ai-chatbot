@@ -2,6 +2,7 @@ import "./css/styles.css";
 import {postInputToOpenAI} from "./../src/js/apiData.js";
 
 function scopingFunc() {
+
   //user input storage for POST requests.
   let userInput = {
     prompt: "",
@@ -12,38 +13,38 @@ function scopingFunc() {
     presence_penalty: 0.0,
   };
   let chatlogHistory = [];
+  let timestamp = new Date().toLocaleTimeString();
+  let postID = 0;
+  let promptID = 0;
 
   //Form submit on click event.
   const submitEvent = async (userInput) => {
     await postInputToOpenAI(userInput)
       .then(returnedData => {
         const returnedDataText = returnedData.choices[0].text;
-        let chatlogObj = createObj(userInput.prompt, returnedDataText);
+        let chatlogObj = createObj(promptID, returnedDataText);
         chatlogHistory.push(chatlogObj);
+        promptID++;
         prependToPage(returnedDataText, "blue");
 
         let listItems = document.querySelectorAll('.chatlogItems');
         listItems.forEach((item) => {
           item.addEventListener('click', (event) => {
             let nodeIndexConversion = event.currentTarget.id - 1;
-            let target = chatlogHistory[nodeIndexConversion];
-            showHistory(event, target, userInput);
-            // alert(`${event.currentTarget.innerHTML} item was clicked. Response: ${target[userInput.prompt]}`);
+            let target = chatlogHistory[nodeIndexConversion][nodeIndexConversion];
+            showHistory(event, target);
+            const getModal = document.querySelectorAll(".popup");
+            addPopupDoneBtn(getModal);
           });
         });
       });
   };
 
-  //Submit event workflow
+  //Form submit event workflow
   const submitButton = document.getElementById("submitBtn");
   submitButton.addEventListener("click", (event) =>{
     event.preventDefault();
-    const getPopups = document.querySelectorAll('.popup');
-    if (getPopups.length > 0){
-      getPopups.forEach((popup) => {
-        popup.remove();
-      });
-    }
+    removePopup();
     //Add "...AI is typing text?"
     userInput.prompt = document.getElementById("formInput").value;
     prependToPage(userInput.prompt, "red");
@@ -53,31 +54,66 @@ function scopingFunc() {
     }
   });
 
-  //Prompt History event
-  const showHistory = (event, target, userInput) => {
-    const getDisplay = document.querySelector(".display");
+
+  //Sidebar components
+  const sidebarFill = (newPrompt) => {
+    if (newPrompt.length <= 0) {
+      newPrompt = "(Empty prompt provided.)";
+    }
+    const sideOutput = document.querySelector(".side-output");
+    const chatlogUl = document.createElement("li");
+    chatlogUl.classList.add("chatlogItems");
+    sideOutput.append(chatlogUl);
+    chatlogUl.setAttribute(`id`, `${chatlogHistory.length}`);
+    // const li = document.createElement("li");
+    chatlogUl.textContent = newPrompt + ` ` + timestamp;
+  };
+
+  //Prompt History click handler
+  const showHistory = (event, target) => {
+    const getView = document.querySelector(".container");
     let modal = document.createElement("div");
     modal.classList.add("popup");
     const listPrompt = document.createElement("li");
     const listReply = document.createElement("li");
-    listPrompt.innerHTML = `Prompt: ${event.currentTarget.innerHTML}`;
-    listReply.innerHTML = `Response: ${target[userInput.prompt]}`;
-
-    console.log(listPrompt, listReply);
-    getDisplay.appendChild(modal);
+    listPrompt.innerHTML = `<h4>Prompt: ${event.currentTarget.innerHTML}</h4>`;
+    listReply.innerHTML = `<h4>Response: ${target}</h4>`;
+    getView.appendChild(modal);
     modal.appendChild(listPrompt);
     modal.appendChild(listReply);
   };
 
-  /* MAIN UI */
-  let timestamp = new Date().toLocaleTimeString();
-  let postID = 1;
+  //Remove popup
+  const removePopup = () => {
+    const getPopups = document.querySelectorAll('.popup');
+    if (getPopups.length > 0){
+      getPopups.forEach((popup) => {
+        popup.remove();
+      });
+    }
+  };
 
+  //Exit popup
+  const addPopupDoneBtn = (getModalList) => {
+    getModalList.forEach((item) => {
+      const doneBtn = document.createElement("button");
+      doneBtn.setAttribute(`id`, `doneBtn`);
+      item.append(doneBtn);
+      doneBtn.innerText = `Close`;
+      doneBtn.addEventListener(`click`, ()=> {
+        console.log("clicky boi");
+        removePopup();
+      });
+    });
+  };
+
+  //Main chat display
   const prependToPage = (textToPrepend, side) => {
+
     //General Selectors
     const sideDisplay = document.querySelector(".onlineNum");
     const output = document.querySelector(".output");
-    //Individual counters/IDs for specific use later.
+    //Individual counters/IDs
     let newPostID = postID ++;
     let buddyCount = chatlogHistory.length - 1;
     if (chatlogHistory.length > 0) {
@@ -90,16 +126,6 @@ function scopingFunc() {
     chatBubbleDiv.setAttribute(`id`, `post${newPostID}`);
     chatBubbleDiv.style.justifyContent = "left";
     output.appendChild(chatBubbleDiv);
-
-    //For each new post, add a delete button, for later.
-    // const deleteButton = document.createElement("button");
-    // deleteButton.classList.add(`deleteBtns`);
-    // const thisDiv = document.getElementById(`post${newPostID}`);
-    // thisDiv.appendChild(deleteButton);
-    // deleteButton.addEventListener("click", () => {
-    //   thisDiv.remove();
-    //   chatlogHistory.splice(buddyCount, 1);
-    // });
 
     //Chat content.
     const chatBuilder = (name) => {
@@ -117,20 +143,6 @@ function scopingFunc() {
     } else if (side === "red") {
       chatBuilder(screenName);
     }
-  };
-
-  //Sidebar components
-  const sidebarFill = (newPrompt) => {
-    if (newPrompt.length <= 0) {
-      newPrompt = "(Empty prompt provided.)";
-    }
-    const sideOutput = document.querySelector(".side-output");
-    const chatlogUl = document.createElement("li");
-    chatlogUl.classList.add("chatlogItems");
-    sideOutput.append(chatlogUl);
-    chatlogUl.setAttribute(`id`, `${chatlogHistory.length}`);
-    // const li = document.createElement("li");
-    chatlogUl.textContent = newPrompt + ` ` + timestamp;
   };
 
   //non UI logic
