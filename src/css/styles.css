@@ -2,6 +2,7 @@ body {
   /* if image fails default to color: */
   background-color: rgba(235, 192, 192, 0.5);
   background-image: url("https://wallpapercave.com/wp/wp2754864.jpg");
+  font-family: Arial;
 }
 
 h5, h4 {
@@ -20,17 +21,29 @@ li {
   font-weight: 500;
 }
 
-.onlineOthers {
-  margin-top: 3%;
+.side-output{
+  margin-bottom: .6rem;
+}
+
+.instructions {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(234, 231, 231, 0.968);
+  width: 30vw;
+  position: absolute;
+  left: 32%;
+  bottom: 20%;
+  padding: 1rem;
+  border: 1px solid rgba(65, 65, 65, 0.8);
 }
 
 .container {
   display: flex;
   flex-direction: row;
-  width: 55vw;
+  width: 50vw;
   height: 49vh;
   margin: auto;
-  margin-top: 10%;
+  margin-top: 5%;
   padding: 2rem;
   align-items: right;
   justify-content: flex-end;
@@ -160,6 +173,18 @@ li {
   width: 97%;
   margin: 2%;
   border: 2.5px solid rgba(127, 125, 125, 0.4);
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.bottom-buttons {
+  height: 100%;
+}
+
+
+.appNotes {
+  font-size: 16px;
+  margin: 0;
 }
 
 #submitBtn {
@@ -173,12 +198,12 @@ li {
   align-items: center;
 }
 
-#red {
+#red, .red {
   font-weight: 700;
   color: rgb(197, 33, 33);
 }
 
-#blue {
+#blue, .blue {
   font-weight: 700;
   color: rgb(33, 62, 194);
 }

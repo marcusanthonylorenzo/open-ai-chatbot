@@ -53,7 +53,6 @@ function scopingFunc() {
     prependToPage(userInput.prompt, "red");
     submitEvent(userInput);
     sidebarFill(userInput.prompt);
-
     const clearTextboxForm = document.getElementById("formInput");
     clearTextboxForm.value = ``;
   });
