@@ -8,12 +8,12 @@
 | **_Overview_:** |
 |---|
 
-**The theme has shifted from a "text conversation" to AOL Instant Messenger's "Smarter Child"...but my version. This brings back the nostalgia of talking to an AI chat bot in 1999. (Even though the background is Windows XP.**
+**The theme has shifted from a "text conversation" to AOL Instant Messenger's "Smarter Child"...but my version. This brings back the nostalgia of talking to an AI chat bot in 1999/2001. (Even though the background is Windows XP :rofl: :rofl: )**
 
 **Notes:**
 - Done in Vanilla JS, no frameworks.
-- I tried my best to use Ajax for the request. It is my current topic of focus.
-- I also believe had I known React, my code would be 30% of the size and much more "portable". It is also my current topic of focus along with Async JS.
+- I tried my best to use Async/Await for the request. It is my current focus of improvement.
+- I also believe had I known React, my code would be 30% of the size and much more "portable". It is actually my primary topic of focus right now, along with Ajax.
 
 
 #### Technologies Used:
@@ -61,7 +61,7 @@
 
 
 #### Running Tests:
-- To view tests via Jest, in your CLI type `npm run test`.
+- ~To view tests via Jest, in your CLI type `npm run test`.~ (I do use Jest every so often. However, in this project I will exclude tests.)
 
 #### Known Bugs:
 * new line errors with API response.text (Proposed solution: pending)
@@ -84,8 +84,7 @@
 - Prompt/Response assigned to Key/Value in `let chatlogHistory[index]`;
 
 #### Collections/Groupings:
-- `let chatlogHistory`, Array to save access to previous requests rather than make extra API calls.
-- 
+- `let chatlogHistory`, Array accessed by the "Sidebar" component.
 
 #### Behaviours/Interactivity
 - Submit/Click event to gather and POST user input text.

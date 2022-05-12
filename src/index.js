@@ -15,7 +15,7 @@ function scopingFunc() {
   let chatlogHistory = [];
   let timestamp = new Date().toLocaleTimeString();
   let postID = 0;
-  let promptID = 0;
+  let promptID = 1;
 
   //Form submit on click event.
   const submitEvent = async (userInput) => {
@@ -24,20 +24,23 @@ function scopingFunc() {
         const returnedDataText = returnedData.choices[0].text;
         let chatlogObj = createObj(promptID, returnedDataText);
         chatlogHistory.push(chatlogObj);
-        promptID++;
         prependToPage(returnedDataText, "blue");
 
+        //Select node list of sidebar elements, for each item add modal functionality on click.
         let listItems = document.querySelectorAll('.chatlogItems');
         listItems.forEach((item) => {
           item.addEventListener('click', (event) => {
-            let nodeIndexConversion = event.currentTarget.id - 1;
-            let target = chatlogHistory[nodeIndexConversion][nodeIndexConversion];
-            showHistory(event, target);
+            //tie nodeListId to promptID/object key.
+            let nodeID = event.currentTarget.id;
+            nodeID++;
+            let targetResponse = chatlogHistory[event.currentTarget.id][nodeID];
+            showHistory(event, targetResponse);
             const getModal = document.querySelectorAll(".popup");
             addPopupDoneBtn(getModal);
           });
         });
       });
+    promptID++;
   };
 
   //Form submit event workflow
@@ -49,35 +52,34 @@ function scopingFunc() {
     userInput.prompt = document.getElementById("formInput").value;
     prependToPage(userInput.prompt, "red");
     submitEvent(userInput);
-    if (chatlogHistory.length > 0){
-      sidebarFill(userInput.prompt);
-    }
-  });
+    sidebarFill(userInput.prompt);
 
+    const clearTextboxForm = document.getElementById("formInput");
+    clearTextboxForm.value = ``;
+  });
 
   //Sidebar components
   const sidebarFill = (newPrompt) => {
     if (newPrompt.length <= 0) {
-      newPrompt = "(Empty prompt provided.)";
+      newPrompt = "(Empty prompt)";
     }
     const sideOutput = document.querySelector(".side-output");
     const chatlogUl = document.createElement("li");
     chatlogUl.classList.add("chatlogItems");
     sideOutput.append(chatlogUl);
     chatlogUl.setAttribute(`id`, `${chatlogHistory.length}`);
-    // const li = document.createElement("li");
     chatlogUl.textContent = newPrompt + ` ` + timestamp;
   };
 
   //Prompt History click handler
-  const showHistory = (event, target) => {
+  const showHistory = (event, responses) => {
     const getView = document.querySelector(".container");
     let modal = document.createElement("div");
     modal.classList.add("popup");
     const listPrompt = document.createElement("li");
     const listReply = document.createElement("li");
     listPrompt.innerHTML = `<h4>Prompt: ${event.currentTarget.innerHTML}</h4>`;
-    listReply.innerHTML = `<h4>Response: ${target}</h4>`;
+    listReply.innerHTML = `<h4>Response: ${responses}</h4>`;
     getView.appendChild(modal);
     modal.appendChild(listPrompt);
     modal.appendChild(listReply);
@@ -109,7 +111,6 @@ function scopingFunc() {
 
   //Main chat display
   const prependToPage = (textToPrepend, side) => {
-
     //General Selectors
     const sideDisplay = document.querySelector(".onlineNum");
     const output = document.querySelector(".output");
@@ -134,7 +135,6 @@ function scopingFunc() {
         <span id="${side}"><strong>${name} (${timestamp})</strong>:</span> ${textToPrepend}
       `;
     };
-
     let chatline = document.createElement("p");
     let smarterChild = "Not-So-SmarterChild";
     let screenName = "Xx You xX 1992";
