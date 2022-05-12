@@ -7,16 +7,17 @@ function scopingFunc() {
   let userInput = {
     prompt: "",
     temperature: 0.5,
-    max_tokens: 20,
-    top_p: 1.0,
+    max_tokens: 36,
+    top_p: 0.3,
     frequency_penalty: 0.0,
     presence_penalty: 0.0,
   };
+
   let chatlogHistory = [];
   let timestamp = new Date().toLocaleTimeString();
   let postID = 0;
   let promptID = 1;
-
+  
   //Form submit on click event.
   const submitEvent = async (userInput) => {
     await postInputToOpenAI(userInput)
@@ -24,12 +25,14 @@ function scopingFunc() {
         const returnedDataText = returnedData.choices[0].text;
         let chatlogObj = createObj(promptID, returnedDataText);
         chatlogHistory.push(chatlogObj);
+        document.getElementById("isTypingStatus").style.display = "none";
         prependToPage(returnedDataText, "blue");
 
         //Select node list of sidebar elements, for each item add modal functionality on click.
         let listItems = document.querySelectorAll('.chatlogItems');
         listItems.forEach((item) => {
           item.addEventListener('click', (event) => {
+            
             //tie nodeListId to promptID/object key.
             let nodeID = event.currentTarget.id;
             nodeID++;
@@ -48,14 +51,20 @@ function scopingFunc() {
   submitButton.addEventListener("click", (event) =>{
     event.preventDefault();
     removePopup();
-    //Add "...AI is typing text?"
     userInput.prompt = document.getElementById("formInput").value;
     prependToPage(userInput.prompt, "red");
+    cpuIsTyping();
     submitEvent(userInput);
-    sidebarFill(userInput.prompt);
+    sidebarFill(userInput.prompt); 
     const clearTextboxForm = document.getElementById("formInput");
     clearTextboxForm.value = ``;
   });
+
+  const cpuIsTyping = () => {
+    const isTypingStatusDiv = document.getElementById("isTypingStatus");
+    isTypingStatusDiv.style.display = "flex";
+    isTypingStatusDiv.textContent = "Open AI is typing...";
+  };
 
   //Sidebar components
   const sidebarFill = (newPrompt) => {

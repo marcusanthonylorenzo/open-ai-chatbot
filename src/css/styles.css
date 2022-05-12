@@ -2,7 +2,6 @@ body {
   /* if image fails default to color: */
   background-color: rgba(235, 192, 192, 0.5);
   background-image: url("https://wallpapercave.com/wp/wp2754864.jpg");
-  font-family: Arial;
 }
 
 h5, h4 {
@@ -39,6 +38,7 @@ li {
 
 .container {
   display: flex;
+  position: static;
   flex-direction: row;
   width: 50vw;
   height: 49vh;
@@ -162,25 +162,38 @@ li {
 }
 
 #formInput {
-  height: 60%;
+  height: 79%;
   width: 97%;
+  margin-bottom: 2%;
+}
+
+#isTypingArea {
+  display: flex;
+  position: relative;
+  left: -8%;
+  width: 80%;
+  height: 20%;
+  font-size: 12px;
+  font-family: Tahoma;
+}
+
+#isTypingStatus {
+  display: flex;
+  justify-content: left;
 }
 
 .bottom-bar {
   display: grid;
   grid-template-columns: 6fr 1fr;
-  height: 30%;
+  height: 50%;
   width: 97%;
   margin: 2%;
   border: 2.5px solid rgba(127, 125, 125, 0.4);
-  padding-top: 2%;
-  padding-bottom: 2%;
 }
 
 .bottom-buttons {
   height: 100%;
 }
-
 
 .appNotes {
   font-size: 16px;
@@ -193,14 +206,17 @@ li {
   border: none;
 }
 
-.deleteBtns {
-  height: 1rem;
-  align-items: center;
+#submitBtn :hover {
+  background-color: rgba(127, 125, 125, 0.9);
+  height: 100%;
+  width: 100%;
+  border: none;
 }
 
 #red, .red {
   font-weight: 700;
   color: rgb(197, 33, 33);
+  font-family: 
 }
 
 #blue, .blue {
@@ -215,11 +231,19 @@ li {
   align-items: center;
   position: absolute;
   background-color: rgba(226, 226, 226, 0.98);
-  left: 30%;
-  height: 30vh;
-  width: 40vw;
+  padding: auto;
+  left: 25%;
+  height: 40vh;
+  width: 50vw;
   border: 1px solid rgba(65, 65, 65, 0.8);
   box-shadow: 3px 6px 1px 3px rgba(127, 125, 125, 0.4);
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.popup li {
+  width: 50%;
+}
+
+#doneBtn {
+  margin-top: 2%;
+}
