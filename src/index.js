@@ -23,7 +23,17 @@ function scopingFunc() {
     await postInputToOpenAI(userInput)
       .then(returnedData => {
         const returnedDataText = returnedData.choices[0].text;
-        let chatlogObj = new ChatlogItem(promptID, userInput.prompt, returnedDataText);
+        
+        //checkbox handler "cool stuff".
+        const coolBoi = document.getElementById("checkyboi");
+        let coolDataText;
+        if (coolBoi.checked === true){
+          coolDataText = sillySpelling(returnedDataText);
+        } else {
+          coolDataText = returnedDataText;
+        }
+
+        let chatlogObj = new ChatlogItem(promptID, userInput.prompt, coolDataText);
         chatlogHistory.push(chatlogObj);
         buddyCountUpdater(chatlogHistory);
         let sn = document.getElementById("screenName").value;
@@ -31,7 +41,7 @@ function scopingFunc() {
         let screenNameCombo = sn + year; 
         chatlogObj.user = screenNameCombo;
         document.getElementById("isTypingStatus").style.display = "none";
-        prependToPage(returnedDataText, "blue");
+        prependToPage(coolDataText, "blue");
         sendDisable(false);
 
 
@@ -50,7 +60,7 @@ function scopingFunc() {
     promptID++;
   };
 
-  //Form submit event workflow
+  //Form submit event workflow.
   const submitButton = document.getElementById("submitBtn");
   submitButton.addEventListener("click", (event) =>{
     event.preventDefault();
@@ -97,6 +107,15 @@ function scopingFunc() {
     output.appendChild(chatBubbleDiv);
     let chatline = document.createElement("p");
 
+    //Additional "cool stuff" code for use:
+    // let newTextToPrepend;
+    // const coolBoi = document.getElementById("checkyboi");
+    // if (coolBoi.checked === true){
+    //   newTextToPrepend = sillySpelling(textToPrepend);
+    // } else {
+    //   newTextToPrepend = textToPrepend;
+    // }
+
     //Chat content.  
     const chatBuilder = (name) => {
       if (name.length <= 0) {
@@ -110,12 +129,25 @@ function scopingFunc() {
     let smarterChild = "Not-So-SmarterChild";
     let sn = document.getElementById("screenName").value;
     let year = document.getElementById("year").value;
-    let screenNameCombo = sn + year; 
+    let targetResponse = sn + year;
+    let screenNameCombo;
+    const coolStuff = document.getElementById("checkyboi");
+    
+    if (coolStuff.checked === true){
+      screenNameCombo = sillySpelling(targetResponse);
+    } else {
+      screenNameCombo = targetResponse;
+    }
+
     if (side === "blue") {
       chatBuilder(smarterChild);
     } else if (side === "red") {
       chatBuilder(screenNameCombo);
     }
+  };
+
+  const sillySpelling = (string) => {
+    return string.split('').map((a,i) => i % 2 ? a.toLowerCase(): a.toUpperCase()).join('');
   };
 
   //Clear Display
