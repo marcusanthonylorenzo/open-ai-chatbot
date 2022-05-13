@@ -13,6 +13,7 @@
 **Notes:**
 - Done in Vanilla JS, no frameworks.
 - I tried my best to use Async/Await for the request. It is my current focus of improvement.
+- It is intended to update UI at different speeds (not instantly), for a dimension of realism.
 - I also believe had I known React, my code would be 30% of the size and much more "portable". It is actually my primary topic of focus right now, along with Ajax.
 - I've left some items in the README crossed out; I want to show my thought processes/changes/ideas so that Shopify can get to know me as a programmer. In a professional setting, I would endeavor to work in a cleaner, more succinct manner.
 

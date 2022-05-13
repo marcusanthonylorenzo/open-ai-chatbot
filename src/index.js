@@ -27,7 +27,7 @@ function scopingFunc() {
         chatlogHistory.push(chatlogObj);
         document.getElementById("isTypingStatus").style.display = "none";
         prependToPage(returnedDataText, "blue");
-
+        sendDisable(false);
         //Select node list of sidebar elements, for each item add modal functionality on click.
         let listItems = document.querySelectorAll('.chatlogItems');
         listItems.forEach((item) => {
@@ -47,6 +47,7 @@ function scopingFunc() {
   submitButton.addEventListener("click", (event) =>{
     event.preventDefault();
     // buttonAnimate();
+    sendDisable(true);
     removePopup();
     userInput.prompt = document.getElementById("formInput").value;
     prependToPage(userInput.prompt, "red");
@@ -65,6 +66,20 @@ function scopingFunc() {
     const isTypingStatusDiv = document.getElementById("isTypingStatus");
     isTypingStatusDiv.style.display = "flex";
     isTypingStatusDiv.textContent = "Open AI is typing...";
+  };
+
+  const sendDisable = (toggle) => {
+    const getSendBtn = document.getElementById("submitBtn");
+    switch (toggle) {
+    case true:
+      getSendBtn.setAttribute("disabled", "");
+      break;
+    case false:
+      getSendBtn.removeAttribute("disabled");
+      break;
+    default:
+      break;
+    }
   };
 
   //Main chat display
@@ -119,6 +134,5 @@ function scopingFunc() {
       element.removeChild(element.firstChild);
     }
   };
-
 }
 scopingFunc();
