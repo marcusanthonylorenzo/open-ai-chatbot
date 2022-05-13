@@ -20,7 +20,7 @@ const showHistory = (event, responses, username) => {
   const listReply = document.createElement("li");
   
   if (username.length < 1) {
-    username = "No username provided.";
+    username = "(No username provided.)";
   }
   listUser.innerHTML = `<h4>User: ${username}</h4>`;
   listPrompt.innerHTML = `<h4>Prompt: ${event.currentTarget.innerHTML}</h4>`;
@@ -32,9 +32,15 @@ const showHistory = (event, responses, username) => {
 };
 
 const buddyCountUpdater = (chatlogHistory) => {
-  const sideDisplay = document.querySelector(".onlineNum");
+  const sideDisplay = document.getElementById('buddies');
   let buddyCount = chatlogHistory.length;
-  sideDisplay.innerHTML = `🞃 Buddies (${buddyCount}/${buddyCount})`;
+  if (buddyCount === 0) {
+    sideDisplay.setAttribute(`class`, `offline`);
+    sideDisplay.innerHTML = `🞃 Buddies (${buddyCount}/${buddyCount})`;
+  } else {
+    sideDisplay.setAttribute(`class`, `onlineNum`);
+    sideDisplay.innerHTML = ` ▸ Buddies (${buddyCount}/${buddyCount})`;
+  }
 };
 
 //Remove popup
@@ -48,14 +54,14 @@ const removePopup = () => {
 };
 
 //Exit popup
-const addPopupDoneBtn = (getModalList, chatlogHistory) => {
+const addPopupDoneBtn = (getModalList) => {
   getModalList.forEach((item) => {
     const doneBtn = document.createElement("button");
     doneBtn.setAttribute(`id`, `doneBtn`);
     item.append(doneBtn);
     doneBtn.innerText = `Close`;
     doneBtn.addEventListener(`click`, ()=> {
-      console.log("clicky boi", chatlogHistory);
+      console.log("clicky boi");
       removePopup();
     });
   });

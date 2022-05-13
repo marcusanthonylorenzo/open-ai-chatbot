@@ -8,22 +8,18 @@
     <div class="inner-wrap">
     <div class="top-bar"><h5>Shopify Front End Developer Intern Challenge</h5></div>
     <div class="chatbox">
-      <!-- <div class="info">
-        <input type="text" id="screenName" placeholder="Type your screen name here!">
-        <input type="text" id="year" placeholder="...and birth year here!">
-      </div> -->
       <div class="display">
         <div class="output-control">
           <div class="output"></div>
         </div> 
       </div>
       <div class="info">
-        <input type="text" id="screenName" placeholder="Type your screen name here!">
-        <input type="text" id="year" placeholder="...and birth year here!">
+        <input type="text" id="screenName" placeholder="Type your screen name here.">
+        <input type="text" id="year" placeholder="...and birth year here.">
       </div>
       <div class="form-wrapper">
         <form class="form-control">
-          <input type="text" id="formInput" placeholder="Welcome, you've got mail. Type your prompt here!">
+          <input type="text" id="formInput" placeholder="Welcome, you've got mail! Type your prompt here.">
           <div id="isTypingArea"><span id="isTypingStatus"></span></div>
           <div class="bottom-bar">
             <div class="bottom-buttons">
@@ -47,6 +43,11 @@
                       <img id="ig" src="https://camo.githubusercontent.com/c9dacf0f25a1489fdbc6c0d2b41cda58b77fa210a13a886d6f99e027adfbd358/68747470733a2f2f6564656e742e6769746875622e696f2f537570657254696e7949636f6e732f696d616765732f7376672f696e7374616772616d2e737667">
                     </a>
                   </div>
+                  <div class="icon-sizer">
+                    <a href="mailto:marcus.anthony.lorenzo@gmail.com">
+                      <img id="email" src="https://camo.githubusercontent.com/0f3aa1f457bb92fbd2411761262ce1fb0f766ed74a4f4289bfc4a0b6024335d6/68747470733a2f2f6564656e742e6769746875622e696f2f537570657254696e7949636f6e732f696d616765732f7376672f656d61696c2e737667">
+                    </a>
+                  </div>
                 </div>
               </div>
               <div class="bottom-submit">
@@ -61,7 +62,7 @@
     <div class="sidebar">
       <div class="side-display">
         <h4 class="online">(Prompt History)</h4>
-        <h4 class="online"><span class="onlineNum">🞃 Buddies (0/0)</span></h4>
+        <h4 class="online"><span class="offline" id="buddies"> ▸ Buddies (0/0)</span></h4>
         <div class="side-output"></div>
         <h4 class="online"><span class="offline"> ▸ Family (0/8)</span></h4>
         <h4 class="online"><span class="offline"> ▸ Offline (0/0)</span></h4>
@@ -69,9 +70,13 @@
     </div>
   </div>
   <div class="instructions">
-    <h5 class="appNotes"><span class="red">Original Prompt</span> is the screen name in <span class="red">red</span>.</h5>
-    <h5 class="appNotes"><span class="blue">Open AI Response</span> is the screen name in <span class="blue">blue</span>.</h5>
-    <h5 class="appNotes">Click to view previous Prompt/Responses on the right under "Buddies".</h5>
+    <h5 class="appNotes"><span class="red">▸Original Prompt</span> is the screen name in <span class="red">red</span>.</h5>
+    <h5 class="appNotes"><span class="blue">▸Open AI Response</span> is the screen name in <span class="blue">blue</span>.</h5>
+    <h5 class="appNotes">▸Click to view previous Prompt/Responses on the right under "Buddies".</h5>
+    <h5 class="appNotes" id="dev">Dev Notes:
+      <li>If no username is provided, it will use a default name, but notify in Prompt History as such.</li>
+      <li>As simple as this is...this took me ages to refine! Enjoy! 😂 </li>
+    </h5>
   </div>
 </body>
 </html>

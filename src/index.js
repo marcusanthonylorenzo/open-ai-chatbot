@@ -25,7 +25,7 @@ function scopingFunc() {
         const returnedDataText = returnedData.choices[0].text;
         let chatlogObj = new ChatlogItem(promptID, userInput.prompt, returnedDataText);
         chatlogHistory.push(chatlogObj);
-
+        buddyCountUpdater(chatlogHistory);
         let sn = document.getElementById("screenName").value;
         let year = document.getElementById("year").value;
         let screenNameCombo = sn + year; 
@@ -33,6 +33,7 @@ function scopingFunc() {
         document.getElementById("isTypingStatus").style.display = "none";
         prependToPage(returnedDataText, "blue");
         sendDisable(false);
+
 
         //Select node list of sidebar elements, for each item add modal functionality on click.
         let listItems = document.querySelectorAll('.chatlogItems');
@@ -57,6 +58,7 @@ function scopingFunc() {
     removePopup();
     userInput.prompt = document.getElementById("formInput").value;
     prependToPage(userInput.prompt, "red");
+    buddyCountUpdater(chatlogHistory);
     cpuIsTyping();
     submitEvent(userInput);
     sidebarFill(userInput.prompt, chatlogHistory, timestamp); 
@@ -85,7 +87,6 @@ function scopingFunc() {
 
   //Main chat display
   const prependToPage = (textToPrepend, side) => {
-    buddyCountUpdater(chatlogHistory);
 
     //Create new div for each new post, attach ID.
     const output = document.querySelector(".output");
@@ -98,7 +99,6 @@ function scopingFunc() {
 
     //Chat content.  
     const chatBuilder = (name) => {
-      console.log(name, name.length);
       if (name.length <= 0) {
         name = "Xx_YourPrompt_xX";
       } 
@@ -107,7 +107,6 @@ function scopingFunc() {
         <span id="${side}"><strong>${name} (${timestamp})</strong>:</span> ${textToPrepend}
       `;
     };
-
     let smarterChild = "Not-So-SmarterChild";
     let sn = document.getElementById("screenName").value;
     let year = document.getElementById("year").value;

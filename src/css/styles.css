@@ -22,22 +22,28 @@ li {
   font-weight: 500;
 }
 
-.side-output{
-  margin-bottom: .6rem;
-}
-
 .instructions {
   display: flex;
   flex-direction: column;
   background-color: rgba(234, 231, 231, 0.968);
-  width: 30vw;
+  width: 36vw;
   position: relative;
-  left: 32%;
+  left: 30%;
   bottom: 20%;
   padding: 1rem;
-  margin-top: 3rem;
+  margin-top: 2rem;
   border: 1px solid rgba(65, 65, 65, 0.8);
   font-family: "IBM Plex Mono";
+}
+
+#dev {
+  margin-top: 1%;
+  margin-left: 5%;
+}
+
+#dev li{
+  font-size: .8rem;
+  color: rgba(11, 150, 1, 0.907);
 }
 
 .container {
@@ -259,6 +265,7 @@ li {
 
 .me p {
   height: 100%;
+  font-weight: 600;
   margin: 1%;
   font-family: "IBM Plex Mono";
 }
@@ -266,7 +273,11 @@ li {
 .icons {
   display: flex;
   justify-content: center;
-  gap: 10%;
+  gap: 4%;
+}
+
+.icons img {
+  border-radius: 7px 7px;
 }
 
 .icon-sizer {
