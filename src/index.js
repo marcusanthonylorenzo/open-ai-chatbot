@@ -17,7 +17,7 @@ function scopingFunc() {
   let chatlogHistory = [];
   let timestamp = new Date().toLocaleTimeString();
   let promptID = 1;
-  
+
   //Form submit on click event.
   const submitEvent = async (userInput) => {
     await postInputToOpenAI(userInput)
@@ -25,15 +25,22 @@ function scopingFunc() {
         const returnedDataText = returnedData.choices[0].text;
         let chatlogObj = new ChatlogItem(promptID, userInput.prompt, returnedDataText);
         chatlogHistory.push(chatlogObj);
+
+        let sn = document.getElementById("screenName").value;
+        let year = document.getElementById("year").value;
+        let screenNameCombo = sn + year; 
+        chatlogObj.user = screenNameCombo;
         document.getElementById("isTypingStatus").style.display = "none";
         prependToPage(returnedDataText, "blue");
         sendDisable(false);
+
         //Select node list of sidebar elements, for each item add modal functionality on click.
         let listItems = document.querySelectorAll('.chatlogItems');
         listItems.forEach((item) => {
           item.addEventListener('click', (event) => {
             let targetResponse = chatlogHistory[event.currentTarget.id].response;
-            showHistory(event, targetResponse);
+            let targetUsername = chatlogHistory[event.currentTarget.id].user;
+            showHistory(event, targetResponse, targetUsername);
             const getModal = document.querySelectorAll(".popup");
             addPopupDoneBtn(getModal, chatlogHistory);
           });
@@ -46,7 +53,6 @@ function scopingFunc() {
   const submitButton = document.getElementById("submitBtn");
   submitButton.addEventListener("click", (event) =>{
     event.preventDefault();
-    // buttonAnimate();
     sendDisable(true);
     removePopup();
     userInput.prompt = document.getElementById("formInput").value;
@@ -56,11 +62,6 @@ function scopingFunc() {
     sidebarFill(userInput.prompt, chatlogHistory, timestamp); 
     document.getElementById("formInput").value = ``;
   });
-
-  // const buttonAnimate = () => {
-  //   const buttons = document.querySelector(".bottomBtns");
-  //   buttons.style.backgroundColor =  "rgba(127, 125, 125, 0.4)";
-  // };
 
   const cpuIsTyping = () => {
     const isTypingStatusDiv = document.getElementById("isTypingStatus");
@@ -93,21 +94,28 @@ function scopingFunc() {
     chatBubbleDiv.setAttribute(`id`, `post${promptID}`);
     chatBubbleDiv.style.justifyContent = "left";
     output.appendChild(chatBubbleDiv);
+    let chatline = document.createElement("p");
 
-    //Chat content.
+    //Chat content.  
     const chatBuilder = (name) => {
+      console.log(name, name.length);
+      if (name.length <= 0) {
+        name = "Xx_YourPrompt_xX";
+      } 
       chatBubbleDiv.prepend(chatline);
       chatline.innerHTML = `
         <span id="${side}"><strong>${name} (${timestamp})</strong>:</span> ${textToPrepend}
       `;
     };
-    let chatline = document.createElement("p");
+
     let smarterChild = "Not-So-SmarterChild";
-    let screenName = "Xx You xX 1992";
+    let sn = document.getElementById("screenName").value;
+    let year = document.getElementById("year").value;
+    let screenNameCombo = sn + year; 
     if (side === "blue") {
       chatBuilder(smarterChild);
     } else if (side === "red") {
-      chatBuilder(screenName);
+      chatBuilder(screenNameCombo);
     }
   };
 

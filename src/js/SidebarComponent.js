@@ -11,15 +11,22 @@ const sidebarFill = (newPrompt, chatlogHistory, timestamp) => {
 };
 
 //Prompt History click handler
-const showHistory = (event, responses) => {
+const showHistory = (event, responses, username) => {
   const getView = document.querySelector(".container");
   let modal = document.createElement("div");
   modal.classList.add("popup");
+  const listUser = document.createElement("li");
   const listPrompt = document.createElement("li");
   const listReply = document.createElement("li");
+  
+  if (username.length < 1) {
+    username = "No username provided.";
+  }
+  listUser.innerHTML = `<h4>User: ${username}</h4>`;
   listPrompt.innerHTML = `<h4>Prompt: ${event.currentTarget.innerHTML}</h4>`;
   listReply.innerHTML = `<h4>Response: ${responses}</h4>`;
   getView.appendChild(modal);
+  modal.appendChild(listUser);
   modal.appendChild(listPrompt);
   modal.appendChild(listReply);
 };

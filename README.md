@@ -8,10 +8,17 @@
 | **_Overview_:** |
 |---|
 
-#### The theme has shifted from a "text msg conversation" to a "conversation with AOL Instant Messenger's 'Smarter Child'"...but my low budget version. This brings back the nostalgia of talking to an AI chat bot in 1999/2001. (Even though the background is Windows XP :rofl: :rofl: )
+#### The theme has shifted from what was originally a "text msg conversation" to a "conversation with AOL Instant Messenger's 'Smarter Child'", but my low-budget version. This brings back the nostalgia of talking to an AI chat bot in 1999/2001. (Even though the background is Windows XP :rofl: :rofl: )
+
+#### Features:
+- A feedback loop with Open AI's `“text-curie-001”` engine.
+- A list of your prompt history, with a timestamp. Modeled after AIM's "Buddy List".
+- The Buddies count (<number>/<number>) represents the total of prompts you've sent, modeled after AIM's "who's online" friends list.
+- A button to clear the main chat box, and another to reset both the list and your previous prompts entirely.
+- A status update which waits for the AI data to fetch. ("Open AI is typing...").
 
 **Notes:**
-- Done in Vanilla JS, no frameworks.
+- Done in Vanilla JS, no frameworks or editors.
 - I tried my best to use Async/Await for the request. It is my current focus of improvement.
 - It is intended to update UI at different speeds (not instantly), for a dimension of realism.
 - I also believe had I known React, my code would be 30% of the size and much more "portable". It is actually my primary topic of focus right now, along with Ajax.
@@ -89,6 +96,8 @@
 - `let chatlogHistory`, Array accessed by the "Sidebar" component.
 
 #### Behaviours/Interactivity
+- I purposefully did not add a scroll bar as I wanted the display to be dominated by the current prompt/response.
+
 - `index.js`
   - Submit/Click event to gather and POST user input text.
   - `submitEvent()` waits for OpenAI to fetch, before updating the UI
