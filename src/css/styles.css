@@ -91,6 +91,7 @@ li {
   padding-left: 10%;
   text-align: left;
   font-size: 14px;
+  cursor: pointer;
 }
 
 .side-output li:hover {
@@ -200,6 +201,7 @@ li {
 
 #checkyboi {
   margin: auto;
+  cursor: pointer;
 }
 
 .form-wrapper {
@@ -259,6 +261,7 @@ li {
   padding: 1%;
   border: 1px solid rgba(104, 104, 104, 0.2);
   box-shadow: 1px 1px 1px 1px rgba(127, 125, 125, 0.4);
+  cursor: pointer;
 }
 
 .appNotes {

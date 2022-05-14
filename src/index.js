@@ -1,5 +1,5 @@
 import "./css/styles.css";
-import {postInputToOpenAI} from "./js/ApiData.js";
+import { postInputToOpenAI } from "./js/ApiData.js";
 import ChatlogItem from "./js/ChatlogItem.js";
 import { sidebarFill, showHistory, buddyCountUpdater, removePopup, addPopupDoneBtn } from "./js/SidebarComponent.js";
 
@@ -18,12 +18,19 @@ function scopingFunc() {
   let timestamp = new Date().toLocaleTimeString();
   let promptID = 1;
 
+  //get screenname values
+  function getScreenName() {
+    let sn = document.getElementById("screenName").value;
+    let year = document.getElementById("year").value;
+    let screenNameCombo = sn + year;
+    return screenNameCombo;
+  }
+
   //Form submit on click event.
   const submitEvent = async (userInput) => {
     await postInputToOpenAI(userInput)
       .then(returnedData => {
         const returnedDataText = returnedData.choices[0].text;
-        
         //checkbox handler "cool stuff".
         const coolBoi = document.getElementById("checkyboi");
         let coolDataText;
@@ -32,20 +39,15 @@ function scopingFunc() {
         } else {
           coolDataText = returnedDataText;
         }
-
         let chatlogObj = new ChatlogItem(promptID, userInput.prompt, coolDataText);
         chatlogHistory.push(chatlogObj);
         buddyCountUpdater(chatlogHistory);
-        let sn = document.getElementById("screenName").value;
-        let year = document.getElementById("year").value;
-        let screenNameCombo = sn + year; 
-        chatlogObj.user = screenNameCombo;
+        chatlogObj.user = getScreenName();
         document.getElementById("isTypingStatus").style.display = "none";
         prependToPage(coolDataText, "blue");
         sendDisable(false);
 
-
-        //Select node list of sidebar elements, for each item add modal functionality on click.
+        //Select node list of sidebar elements, for each item add modal functionality on click. 
         let listItems = document.querySelectorAll('.chatlogItems');
         listItems.forEach((item) => {
           item.addEventListener('click', (event) => {
@@ -56,6 +58,20 @@ function scopingFunc() {
             addPopupDoneBtn(getModal, chatlogHistory);
           });
         });
+      })
+      .catch((error) => {
+        const getView = document.querySelector(".container");
+        let modal = document.createElement("div");
+        modal.classList.add("popup");
+        const listError = document.createElement("li");
+        const errorMsg = document.createElement("li");
+        listError.innerHTML = `
+          <h4>Sorry, you've encountered an error!</h4>
+          <h4>${error.response.status}: ${error.message}</h4>
+        `;
+        // errorMsg.innerHTML = `<h4>`;
+        getView.appendChild(modal);
+        modal.appendChild(listError);
       });
     promptID++;
   };
@@ -107,15 +123,6 @@ function scopingFunc() {
     output.appendChild(chatBubbleDiv);
     let chatline = document.createElement("p");
 
-    //Additional "cool stuff" code for use:
-    // let newTextToPrepend;
-    // const coolBoi = document.getElementById("checkyboi");
-    // if (coolBoi.checked === true){
-    //   newTextToPrepend = sillySpelling(textToPrepend);
-    // } else {
-    //   newTextToPrepend = textToPrepend;
-    // }
-
     //Chat content.  
     const chatBuilder = (name) => {
       if (name.length <= 0) {
@@ -126,19 +133,17 @@ function scopingFunc() {
         <span id="${side}"><strong>${name} (${timestamp})</strong>:</span> ${textToPrepend}
       `;
     };
+
     let smarterChild = "Not-So-SmarterChild";
-    let sn = document.getElementById("screenName").value;
-    let year = document.getElementById("year").value;
-    let targetResponse = sn + year;
+    let targetResponse = getScreenName();
     let screenNameCombo;
     const coolStuff = document.getElementById("checkyboi");
-    
     if (coolStuff.checked === true){
       screenNameCombo = sillySpelling(targetResponse);
     } else {
       screenNameCombo = targetResponse;
     }
-
+    
     if (side === "blue") {
       chatBuilder(smarterChild);
     } else if (side === "red") {
