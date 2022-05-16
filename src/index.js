@@ -15,7 +15,7 @@ function scopingFunc() {
     presence_penalty: 0.0,
   };
   let chatlogHistory = [];
-  let timestamp = new Date().toLocaleTimeString();
+
   let promptID = 1;
 
   //get screenname values
@@ -39,6 +39,8 @@ function scopingFunc() {
         } else {
           coolDataText = returnedDataText;
         }
+
+        //instaniate form in new object, update display
         let chatlogObj = new ChatlogItem(promptID, userInput.prompt, coolDataText);
         chatlogHistory.push(chatlogObj);
         buddyCountUpdater(chatlogHistory);
@@ -64,12 +66,11 @@ function scopingFunc() {
         let modal = document.createElement("div");
         modal.classList.add("popup");
         const listError = document.createElement("li");
-        const errorMsg = document.createElement("li");
         listError.innerHTML = `
           <h4>Sorry, you've encountered an error!</h4>
-          <h4>${error.response.status}: ${error.message}</h4>
+          <h4>${error.message}</h4>
+          <h4>Please check that your internet connection is strong, or that your key is correct.</h4>
         `;
-        // errorMsg.innerHTML = `<h4>`;
         getView.appendChild(modal);
         modal.appendChild(listError);
       });
@@ -79,6 +80,7 @@ function scopingFunc() {
   //Form submit event workflow.
   const submitButton = document.getElementById("submitBtn");
   submitButton.addEventListener("click", (event) =>{
+    let timestamp = new Date().toLocaleTimeString();
     event.preventDefault();
     sendDisable(true);
     removePopup();
@@ -99,21 +101,15 @@ function scopingFunc() {
 
   const sendDisable = (toggle) => {
     const getSendBtn = document.getElementById("submitBtn");
-    switch (toggle) {
-    case true:
+    if (toggle === true){
       getSendBtn.setAttribute("disabled", "");
-      break;
-    case false:
+    } else {
       getSendBtn.removeAttribute("disabled");
-      break;
-    default:
-      break;
     }
   };
 
   //Main chat display
   const prependToPage = (textToPrepend, side) => {
-
     //Create new div for each new post, attach ID.
     const output = document.querySelector(".output");
     const chatBubbleDiv = document.createElement("div");
@@ -130,10 +126,9 @@ function scopingFunc() {
       } 
       chatBubbleDiv.prepend(chatline);
       chatline.innerHTML = `
-        <span id="${side}"><strong>${name} (${timestamp})</strong>:</span> ${textToPrepend}
+        <span id="${side}"><strong>${name}</strong>:</span> ${textToPrepend}
       `;
     };
-
     let smarterChild = "Not-So-SmarterChild";
     let targetResponse = getScreenName();
     let screenNameCombo;
@@ -142,8 +137,7 @@ function scopingFunc() {
       screenNameCombo = sillySpelling(targetResponse);
     } else {
       screenNameCombo = targetResponse;
-    }
-    
+    } 
     if (side === "blue") {
       chatBuilder(smarterChild);
     } else if (side === "red") {

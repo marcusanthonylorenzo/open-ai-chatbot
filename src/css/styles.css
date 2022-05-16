@@ -152,8 +152,6 @@ li {
   height: 99%;
   border: 1px solid rgba(54, 54, 54, .7);
   overflow: auto;
-  margin-top: 3%;
-  /* margin-bottom: 6%; */
 }
 
 .output {
@@ -248,7 +246,7 @@ li {
   border: 2.5px solid rgba(127, 125, 125, 0.4);
 }
 
-.bottom-buttons {
+.bottom-buttons-section {
   display: flex;
   gap: 1%;
   height: 100%;
@@ -343,4 +341,25 @@ li {
 
 #doneBtn {
   margin-top: 2%;
+}
+
+@media screen and (max-width: 1000px) {
+  .container {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    width: 82vw;
+    height: 30vh;
+    margin: auto;
+    margin-top: 5%;
+    padding: 2rem;
+    align-items: right;
+    justify-content: flex-end;
+    background-color: rgba(234, 231, 231, 0.931);
+    gap: 0.5rem;
+    border: 1px solid rgba(65, 65, 65, 0.8);
+    border-top-style: none;
+    box-shadow: 3px 6px 1px 3px rgba(33, 33, 33, 0.7);
+  }
+
 }

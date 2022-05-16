@@ -3,7 +3,7 @@ export const postInputToOpenAI = async (userInput) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer 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`,
+      Authorization: `Bearer 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`,
     },
     body: JSON.stringify(userInput),
   });

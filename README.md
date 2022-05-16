@@ -11,7 +11,7 @@
 #### The theme has shifted from what was originally a "text msg conversation" to a "conversation with AOL Instant Messenger's 'Smarter Child'", but my low-budget version. This brings back the nostalgia of talking to an AI chat bot in 1999/2001. (Even though the background is Windows XP :rofl: :rofl: )
 
 #### Features:
-- A feedback loop with Open AI's `“text-curie-001”` engine.
+- A user input prompt and subsequent response with Open AI's `“text-curie-001”` engine.
 - A list of your prompt history, with a timestamp. Modeled after AIM's "Buddy List".
 - The Buddies count (<number>/<number>) represents the total of prompts you've sent, modeled after AIM's "who's online" friends list.
 - A button to clear the main chat box, and another to reset both the list and your previous prompts entirely.
@@ -20,7 +20,7 @@
 **Notes:**
 - Done in Vanilla JS, no frameworks or editors.
 - I tried my best to use Async/Await for the request. It is my current focus of improvement.
-- It is intended to update UI at different speeds (not instantly), for a dimension of realism.
+- If I had more time, I would use local or web storage to maintain prompt history.
 - I also believe had I known React, my code would be 30% of the size and much more "portable". It is actually my primary topic of focus right now, along with Ajax.
 - I've left some items in the README crossed out; I want to show my thought processes/changes/ideas so that Shopify can get to know me as a programmer. In a professional setting, I would endeavor to work in a cleaner, more succinct manner.
 
@@ -73,8 +73,7 @@
 - ~To view tests via Jest, in your CLI type `npm run test`.~ (I do use Jest every so often. However, in this project I will exclude tests.)
 
 #### Known Bugs:
-* resizing scaling can be unresponsive to window size. (Proposed solution: set media queries)
-* scroll delay not matching output if click event in rapid succession (Proposed solution: disable button until response has been parsed)
+* buttons work but UI does not animate to signify button click.
 
 ---
 

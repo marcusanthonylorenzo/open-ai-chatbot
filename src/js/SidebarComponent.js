@@ -5,7 +5,7 @@ const sidebarFill = (newPrompt, chatlogHistory, timestamp) => {
   const sideOutput = document.querySelector(".side-output");
   const chatlogUl = document.createElement("li");
   chatlogUl.classList.add("chatlogItems");
-  sideOutput.append(chatlogUl);
+  sideOutput.prepend(chatlogUl);
   chatlogUl.setAttribute(`id`, `${chatlogHistory.length}`);
   chatlogUl.textContent = newPrompt + ` ` + timestamp;
 };
