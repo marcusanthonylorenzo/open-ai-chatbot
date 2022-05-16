@@ -27,7 +27,7 @@
 - A status update which waits for the AI data to fetch. ("Open AI is typing...").
 
 **Notes:**
-- Done in Vanilla JS, no frameworks or editors.
+- Done in Vanilla JS and custom CSS, no frameworks or editors.
 - I tried my best to use Async/Await for the request. It is my current focus of improvement.
 - If I had more time, I would use local or web storage to maintain prompt history.
 - I also believe had I known React, my code would be 30% of the size and much more "portable". It is actually my primary topic of focus right now, along with Ajax.
@@ -78,6 +78,7 @@
 - ~To view tests via Jest, in your CLI type `npm run test`.~ (I do use Jest every so often. However, in this project I will exclude tests.)
 
 #### Known Bugs:
+* Landscape resizing on mobile phones do not allow for functionality. (Was not a priority for the MVP of this project.)
 * buttons work but UI does not animate to signify button click.
 
 ---
