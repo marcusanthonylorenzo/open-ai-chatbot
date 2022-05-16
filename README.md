@@ -8,12 +8,21 @@
 | **_Overview_:** |
 |---|
 
-#### The theme has shifted from what was originally a "text msg conversation" to a "conversation with AOL Instant Messenger's 'Smarter Child'", but my low-budget version. This brings back the nostalgia of talking to an AI chat bot in 1999/2001. (Even though the background is Windows XP :rofl: :rofl: )
+### The theme has shifted from what was originally a "text msg conversation" to a "conversation with AOL Instant Messenger's 'Smarter Child'", but my low-budget version. This brings back the nostalgia of talking to an AI chat bot in 1999/2001. (Even though the background is Windows XP :rofl:)
+
+
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/100096239/168535093-a1da8fea-2c22-4a98-b71b-688744813f1c.gif)
+
+
+
+| **_Description_:** |
+|---|
 
 #### Features:
-- A user input prompt and subsequent response with Open AI's `“text-curie-001”` engine.
-- A list of your prompt history, with a timestamp. Modeled after AIM's "Buddy List".
-- The Buddies count (<number>/<number>) represents the total of prompts you've sent, modeled after AIM's "who's online" friends list.
+- A user **text input prompt** and subsequent **response with Open AI's `“text-curie-001”` engine**.
+- (Max-tokens are set at 32, to offset limits. **Responses will be cut off depending on the limit**)
+- A list of your prompt history, with a timestamp. Modeled after AIM's "Buddy List". **It goes top-to-bottom, newest-to-oldest.**
+- The Buddies counter represents the total of prompts you've sent, modeled after AIM's "who's online" friends list. 
 - A button to clear the main chat box, and another to reset both the list and your previous prompts entirely.
 - A status update which waits for the AI data to fetch. ("Open AI is typing...").
 
@@ -31,10 +40,6 @@
 ![image](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)  ![image](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![image](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
 ---
-
-
-| **_Description_:** |
-|---|
 
 ##### **My primary objectives** were:
 - To practice the best coding conventions **to my knowledge**...having only learnt for the last 6 months.

@@ -12,13 +12,13 @@ const sidebarFill = (newPrompt, chatlogHistory, timestamp) => {
 
 //Prompt History click handler
 const showHistory = (event, responses, username) => {
+  removePopup();
   const getView = document.querySelector(".container");
   let modal = document.createElement("div");
   modal.classList.add("popup");
   const listUser = document.createElement("li");
   const listPrompt = document.createElement("li");
   const listReply = document.createElement("li");
-  
   if (username.length < 1) {
     username = "(No username provided.)";
   }
