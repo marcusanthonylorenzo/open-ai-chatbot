@@ -348,8 +348,8 @@ li {
     display: flex;
     position: static;
     flex-direction: row;
-    width: 82vw;
-    height: 30vh;
+    width: 80vw;
+    height: 35vh;
     margin: auto;
     margin-top: 5%;
     padding: 2rem;
@@ -362,4 +362,17 @@ li {
     box-shadow: 3px 6px 1px 3px rgba(33, 33, 33, 0.7);
   }
 
+  .instructions {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(234, 231, 231, 0.968);
+    width: 60vw;
+    position: relative;
+    left: 15%;
+    bottom: 20%;
+    padding: 1rem;
+    margin-top: 2rem;
+    border: 1px solid rgba(65, 65, 65, 0.8);
+    font-family: "IBM Plex Mono";
+  }
 }
