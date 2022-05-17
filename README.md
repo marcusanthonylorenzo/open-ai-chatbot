@@ -23,8 +23,8 @@
 |---|
 
 #### Features:
-- A user **text input prompt** and subsequent **response with Open AI's `“text-curie-001”` engine**.
-- Max-tokens are set at 32, to offset limits. **Response wording will be cut off depending on the limit**
+- A user **text input prompt** and subsequent **response with Open AI's `“text-curie-001”` engine**. (Blank entries are allowed, as they were with AOL's Smarter Child.)
+- Max-tokens are set at 32, to offset exceeding limits. **Response wording will be cut off depending on the limit**
 - A list of your prompt history, with a timestamp. Modeled after AIM's "Buddy List". **It goes top-to-bottom, newest-to-oldest.**
 - The Buddies counter represents the total of prompts you've sent, modeled after AIM's "who's online" friends list. 
 - A button to clear the main chat box, and another to reset both the list and your previous prompts entirely.
