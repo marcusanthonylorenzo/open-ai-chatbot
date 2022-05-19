@@ -8,7 +8,8 @@
 | **_Overview_:** |
 |---|
 
-### The theme has shifted from what was originally a "text msg conversation" to a "conversation with AOL Instant Messenger's 'Smarter Child'", but my low-budget version. This brings back the nostalgia of talking to an AI chat bot in 1999/2001. (Even though the background is Windows XP :rofl:)
+### The theme has shifted from what was originally a "text msg conversation" to a "conversation with AOL Instant Messenger's 'Smarter Child'", but my low-budget version.
+### This brings back the nostalgia of talking to an AI chat bot in 1999/2001. (Even though the background is Windows XP :rofl:)
 
 
 .
@@ -23,7 +24,7 @@
 |---|
 
 #### Features:
-- A user **text input prompt** and subsequent **response with Open AI's `“text-curie-001”` engine**. (Blank entries are allowed, as they were with AOL's Smarter Child.)
+- A user **text input prompt** and subsequent **response with Open AI's `“text-curie-001”` engine**. (Blank entries are allowed, as they were with AOL's Smarter Child. A simple `required` attribute can be added if needed. )
 - Max-tokens are set at 32, to offset exceeding limits. **Response wording will be cut off depending on the limit**
 - A list of your prompt history, with a timestamp. Modeled after AIM's "Buddy List". **It goes top-to-bottom, newest-to-oldest.**
 - The Buddies counter represents the total of prompts you've sent, modeled after AIM's "who's online" friends list. 
@@ -31,10 +32,10 @@
 - A status update which waits for the AI data to fetch. ("Open AI is typing...").
 
 **Notes:**
-- Done in Vanilla JS and custom CSS, no frameworks or editors. Page is not responsive for screens less than 600px of height.
-- I used Async/Await for the request. It is my current focus of improvement.
+- Done in Vanilla JS and custom CSS, no frameworks or editors. Responsiveness could be improved - a current topic of my learning journey.
 - In time, I would use local or web storage to maintain prompt history.
 - I also believe upon improving my React skills, the code would be 30% of the size and much more "portable". It is actually my primary topic of focus right now, along with Ajax.
+- My code for handling the API response in `index.js` needs to DRY up more, but it works for the MVP!
 - I've left some items in the README crossed out; I want to show my thought processes/changes/ideas so that Shopify can get to know me as a programmer. In a professional setting, I would endeavor to work in a cleaner, more succinct manner.
 
 
