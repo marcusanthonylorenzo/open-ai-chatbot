@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
 
 :root {
-  --offline-color: rgb(170, 167, 167);
+  --offline-color: rgb(174, 174, 174);
   --border-color: rgba(65, 65, 65, 0.8);
-  --bg-color: rgba(234, 231, 231, 0.931);
+  --bg-color: rgba(234, 231, 231, 0.5);
 }
 
 body {
@@ -31,7 +31,7 @@ li {
 .instructions {
   display: flex;
   flex-direction: column;
-  background-color: var(--offline-color);
+  background-color: rgba(234, 231, 231, 0.968);
   width: 36vw;
   position: relative;
   left: 30%;

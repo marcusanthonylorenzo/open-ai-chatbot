@@ -56,9 +56,9 @@ function scopingFunc() {
     chatlogHistory.push(chatlogObj);
     buddyCountUpdater(chatlogHistory);
     chatlogObj.user = getScreenName();
-
+    
     document.getElementById("isTypingStatus").style.display = "none";
-    prependToPage(chatlogObj.response, "blue");
+    prependChatTextToPage(chatlogObj.response, "blue");
     sendDisable(false);
 
     // Select node list of sidebar elements, for each item add modal functionality on click. 
@@ -77,20 +77,22 @@ function scopingFunc() {
   //Form submit event workflow.
   const submitButton = document.getElementById("submitBtn");
   submitButton.addEventListener("click", (event) =>{
+
     let timestamp = new Date().toLocaleTimeString();
     event.preventDefault();
     sendDisable(true);
     removePopup();
+
     userInput.prompt = document.getElementById("formInput").value;
-    prependToPage(userInput.prompt, "red");
+    prependChatTextToPage(userInput.prompt, "red");
     buddyCountUpdater(chatlogHistory);
-    cpuIsTyping();
+    showCpuIsTypingStatus();
     submitEvent(userInput);
     sidebarFill(userInput.prompt, chatlogHistory, timestamp); 
     document.getElementById("formInput").value = ``;
   });
 
-  const cpuIsTyping = () => {
+  const showCpuIsTypingStatus = () => {
     const isTypingStatusDiv = document.getElementById("isTypingStatus");
     isTypingStatusDiv.style.display = "flex";
     isTypingStatusDiv.textContent = "Open AI is typing...";
@@ -106,7 +108,8 @@ function scopingFunc() {
   };
 
   //Main chat display
-  const prependToPage = (textToPrepend, side) => {
+  const prependChatTextToPage = (textToPrepend, side) => {
+
     //Create new div for each new post, attach ID.
     const output = document.querySelector(".output");
     const chatBubbleDiv = document.createElement("div");
@@ -114,6 +117,7 @@ function scopingFunc() {
     chatBubbleDiv.classList.add(`chatBubble`);
     chatBubbleDiv.style.justifyContent = "left";
     output.appendChild(chatBubbleDiv);
+
     //chat content
     let chatline = document.createElement("p");  
     const chatBuilder = (name) => {
@@ -125,6 +129,8 @@ function scopingFunc() {
         <span id="${side}"><strong>${name}</strong>:</span> ${textToPrepend}
       `;
     };
+    
+    //control flow for user vs ai
     let smarterChild = "Not-So-SmarterChild";
     let targetResponse = getScreenName();
     let screenNameCombo;
