@@ -259,13 +259,18 @@ li {
   width: 100%;
 }
 
-.bottomBtns {
+.bottom-buttons-clickspace {
   height: 100%;
   width: 25%;
   padding: 1%;
   border: 1px solid rgba(104, 104, 104, 0.2);
   box-shadow: 1px 1px 1px 1px rgba(127, 125, 125, 0.4);
   cursor: pointer;
+}
+
+.bottom-buttons-clickspace:active {
+  height: 99%;
+  background-color: var(--offline-color);
 }
 
 .appNotes {
