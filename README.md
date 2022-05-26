@@ -1,8 +1,6 @@
-# Shopify Front End Developer Intern Challenge
+# OpenAI Windows Themed Chatbot
 #### By _**Marcus Lorenzo**_
 ---
-
-![image](https://cdn.shopify.com/s/files/1/0611/1605/5788/t/2/assets/shopify-internships-logo.svg?v=54099945611246839601638917488)
 
 
 | **_Overview_:** |
