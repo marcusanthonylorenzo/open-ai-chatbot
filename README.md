@@ -11,7 +11,7 @@
 
 
 .
-### [Live link via GitHub Pages: https://marcusanthonylorenzo.github.io/shopify-intern-challenge/](https://marcusanthonylorenzo.github.io/shopify-intern-challenge/)
+### [Live link via GitHub Pages]()
 
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/100096239/168535093-a1da8fea-2c22-4a98-b71b-688744813f1c.gif)
@@ -42,14 +42,6 @@
 ![image](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white) ![image](https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white)
 ![image](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)  ![image](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![image](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
----
-
-##### **My primary objectives** were:
-- To practice the best coding conventions **to my knowledge**...having only learnt for the last 6 months.
-- Try to write readable, organized code.
-- ~To store JSON response objects into a variable, to save API call limits.~ Calls must be made each time for a more dynamic user experience.
-- To account for the possibility of this project scaling to a high-volume (many people start to code without considering the trail of data that gets tangled up over time).
-- To keep variables as tightly scoped as possible, writing the cleanest code I can.
 
 ---
 
@@ -72,7 +64,7 @@
 |---|---|
 | Download install Git Bash (Windows), use the terminal in your text editor, or open Terminal(Mac) | Simply download the ZIP via the green "Code" button to right of the "Add file" button at the main repo page. 
  Open Git Bash or Terminal and type: `cd desktop` | Go to your zip file and extract to desired location on computer. 
- Next, clone `https://github.com/marcusanthonylorenzo/shopify-intern-challenge` | Go to specified extraction folder, and follow the following steps to the left column.
+ Next, clone `https://github.com/marcusanthonylorenzo/open-ai-chatbot` | Go to specified extraction folder, and follow the following steps to the left column.
  Once completed, open this new directory in your text editor | 
  In the CLI, install node_modules directory via `npm install` or `yarn install`, then bundle and start dev server via `npm run start` or `yarn run start` to run project. |
 
