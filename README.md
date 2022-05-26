@@ -11,8 +11,9 @@
 
 
 .
-### [Live link via GitHub Pages]()
+### [Live link via GitHub Pages](https://marcusanthonylorenzo.github.io/open-ai-chatbot/)
 
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/100096239/170590077-cf59132f-3791-4999-9f40-7e4c1973b938.gif)
 
 
 
@@ -28,11 +29,8 @@
 - A status update which waits for the AI data to fetch. ("Open AI is typing...").
 
 **Notes:**
-- Done in Vanilla JS and custom CSS, no frameworks or editors. Responsiveness could be improved - a current topic of my learning journey.
-- In time, I would use local or web storage to maintain prompt history.
-- I also believe upon improving my React skills, the code would be 30% of the size and much more "portable". It is actually my primary topic of focus right now, along with Ajax.
-- My code for handling the API response in `index.js` needs to DRY up more, but it works for the MVP!
-- I've left some items in the README crossed out; I want to show my thought processes/changes/ideas so that Shopify can get to know me as a programmer. In a professional setting, I would endeavor to work in a cleaner, more succinct manner.
+- Done in Vanilla JS and custom CSS. No frameworks.
+- `sessionStorage` is used to store JSON response.
 
 
 #### Technologies Used:
@@ -72,7 +70,6 @@
 
 #### Known Bugs:
 * Landscape resizing on mobile phones do not allow for functionality. (Was not a priority for the MVP of this project.)
-* buttons work but UI does not animate to signify button click.
 
 ---
 
