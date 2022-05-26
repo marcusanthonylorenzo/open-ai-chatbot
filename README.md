@@ -14,8 +14,6 @@
 ### [Live link via GitHub Pages]()
 
 
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/100096239/168535093-a1da8fea-2c22-4a98-b71b-688744813f1c.gif)
-
 
 
 | **_Description_:** |
