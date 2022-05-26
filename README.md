@@ -11,6 +11,10 @@
 ### The theme has shifted from what was originally a "text msg conversation" to a "conversation with AOL Instant Messenger's 'Smarter Child'", but my low-budget version. This brings back the nostalgia of talking to an AI chat bot in 1999/2001. (Even though the background is Windows XP :rofl:)
 
 
+.
+### [Live link via GitHub Pages: https://marcusanthonylorenzo.github.io/shopify-intern-challenge/](https://marcusanthonylorenzo.github.io/shopify-intern-challenge/)
+
+
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/100096239/168535093-a1da8fea-2c22-4a98-b71b-688744813f1c.gif)
 
 
@@ -20,17 +24,17 @@
 
 #### Features:
 - A user **text input prompt** and subsequent **response with Open AI's `“text-curie-001”` engine**.
-- (Max-tokens are set at 32, to offset limits. **Responses will be cut off depending on the limit**)
+- Max-tokens are set at 32, to offset limits. **Response wording will be cut off depending on the limit**
 - A list of your prompt history, with a timestamp. Modeled after AIM's "Buddy List". **It goes top-to-bottom, newest-to-oldest.**
 - The Buddies counter represents the total of prompts you've sent, modeled after AIM's "who's online" friends list. 
 - A button to clear the main chat box, and another to reset both the list and your previous prompts entirely.
 - A status update which waits for the AI data to fetch. ("Open AI is typing...").
 
 **Notes:**
-- Done in Vanilla JS, no frameworks or editors.
-- I tried my best to use Async/Await for the request. It is my current focus of improvement.
-- If I had more time, I would use local or web storage to maintain prompt history.
-- I also believe had I known React, my code would be 30% of the size and much more "portable". It is actually my primary topic of focus right now, along with Ajax.
+- Done in Vanilla JS and custom CSS, no frameworks or editors. Page is not responsive for screens less than 600px of height.
+- I used Async/Await for the request. It is my current focus of improvement.
+- In time, I would use local or web storage to maintain prompt history.
+- I also believe upon improving my React skills, the code would be 30% of the size and much more "portable". It is actually my primary topic of focus right now, along with Ajax.
 - I've left some items in the README crossed out; I want to show my thought processes/changes/ideas so that Shopify can get to know me as a programmer. In a professional setting, I would endeavor to work in a cleaner, more succinct manner.
 
 
@@ -78,6 +82,7 @@
 - ~To view tests via Jest, in your CLI type `npm run test`.~ (I do use Jest every so often. However, in this project I will exclude tests.)
 
 #### Known Bugs:
+* Landscape resizing on mobile phones do not allow for functionality. (Was not a priority for the MVP of this project.)
 * buttons work but UI does not animate to signify button click.
 
 ---

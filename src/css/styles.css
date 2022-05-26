@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
 
+:root {
+  --offline-color: rgb(170, 167, 167);
+  --border-color: rgba(65, 65, 65, 0.8);
+  --bg-color: rgba(234, 231, 231, 0.931);
+}
+
 body {
   /* if image fails default to color: */
   background-color: rgba(235, 192, 192, 0.5);
@@ -18,21 +24,21 @@ li {
 .offline {
   font-size: 1em;
   text-align: left;
-  color:rgb(170, 167, 167);
+  color: var(--offline-color);
   font-weight: 500;
 }
 
 .instructions {
   display: flex;
   flex-direction: column;
-  background-color: rgba(234, 231, 231, 0.968);
+  background-color: var(--offline-color);
   width: 36vw;
   position: relative;
   left: 30%;
   bottom: 20%;
   padding: 1rem;
   margin-top: 2rem;
-  border: 1px solid rgba(65, 65, 65, 0.8);
+  border: 1px solid var(--border-color);
   font-family: "IBM Plex Mono";
 }
 
@@ -57,7 +63,7 @@ li {
   padding: 2rem;
   align-items: right;
   justify-content: flex-end;
-  background-color: rgba(234, 231, 231, 0.931);
+  background-color: var(--bg-color);
   gap: 0.5rem;
   border: 1px solid rgba(65, 65, 65, 0.8);
   border-top-style: none;
