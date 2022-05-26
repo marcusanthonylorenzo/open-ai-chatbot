@@ -61,7 +61,6 @@ const addPopupDoneBtn = (getModalList) => {
     item.append(doneBtn);
     doneBtn.innerText = `Close`;
     doneBtn.addEventListener(`click`, ()=> {
-      console.log("clicky boi");
       removePopup();
     });
   });
