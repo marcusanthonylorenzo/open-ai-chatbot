@@ -13,7 +13,7 @@
 .
 ### [Live link via GitHub Pages](https://marcusanthonylorenzo.github.io/open-ai-chatbot/)
 
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/100096239/170590077-cf59132f-3791-4999-9f40-7e4c1973b938.gif)
+![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/100096239/174422728-3910b547-ab15-4bb3-bddc-bad47c13fb7c.gif)
 
 
 
